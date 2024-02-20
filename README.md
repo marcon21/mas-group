@@ -9,7 +9,7 @@ docker build -t tva .
 ```
 Run the TVA analysis by running the Docker Image. You need to mount the folder `input/`.
 ```bash
-docker run tva $(pwd)/input/:/input
+docker run -v $(pwd)/input:/input tva
 ```
 Once the execution ends you should find a PDF file called `tva_report.pdf` with the analysis.
 
