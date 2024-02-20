@@ -3,7 +3,12 @@ import numpy as np
 
 
 def plurality_outcome(s: np.array) -> List[Tuple[str, int]]:
-    return ""
+    first_prefs = s[0, :]
+    alternatives, votes = np.unique(first_prefs, return_counts=True)
+    winners_i = np.argwhere(votes == np.max(votes)).flatten()
+    winners = [(alternatives[i], np.max(votes)) for i in winners_i]
+    winners = tie_votes_resolver(winners)
+    return winners
 
 
 def for_two_outcome(s: np.array) -> List[Tuple[str, int]]:
@@ -15,7 +20,7 @@ def veto_outcome(s: np.array) -> str:
 
 
 def borda_outcome(s: np.array) -> str:
-    
+
     return ""
 
 
