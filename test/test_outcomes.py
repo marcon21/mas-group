@@ -14,8 +14,13 @@ class TestOutComes(unittest.TestCase):
             ]
         )
 
-    # TODO
-    """ 
+    def test_plurality_should_return_general_expected_outcome(self):
+        expected_outcome = [("B", 3)]
+        outcome = o.plurality_outcome(self.s)
+
+        self.assertCountEqual(outcome, expected_outcome)
+        self.assertListEqual(outcome, expected_outcome)
+
     def test_plurality_should_resolve_ties(self):
         # Both B and C have max num votes (2)
         self.s[0, :] = ["C", "B", "C", "A", "B"]
@@ -24,11 +29,19 @@ class TestOutComes(unittest.TestCase):
 
         self.assertCountEqual(outcome, expected_outcome)
         self.assertListEqual(outcome, expected_outcome)
-    """
 
-    def test_plurality_should_returns_general_expected_outcome(self):
-        expected_outcome = [("B", 3)]
-        outcome = o.plurality_outcome(self.s)
+    def test_for_two_should_return_general_expected_outcome(self):
+        expected_outcome = [("B", 3), ("D", 3)]
+        outcome = o.for_two_outcome(self.s)
+
+        self.assertCountEqual(outcome, expected_outcome)
+        self.assertListEqual(outcome, expected_outcome)
+
+    def test_for_two_should_resolve_ties(self):
+        # A, B, C have 3 votes
+        self.s[0, 0] = "A"
+        expected_outcome = [("A", 3), ("B", 3)]
+        outcome = o.for_two_outcome(self.s)
 
         self.assertCountEqual(outcome, expected_outcome)
         self.assertListEqual(outcome, expected_outcome)
