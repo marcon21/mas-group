@@ -10,11 +10,11 @@ UnionArray = Union[np.ndarray, pd.DataFrame]
 class Result(dict):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.winner = self.get_winner()
 
     # Method to get the winner of the voting, resolving ties by
     # returning the first one in alphabetical order
-    def get_winner(self) -> str:
+    @property
+    def winner(self) -> str:
         return max(self, key=self.get)
 
     # Overriding the __repr__ method to include the winner
