@@ -32,6 +32,9 @@ class HappinessLevel:
 
     @property
     def all_happiness_level(self) -> np.ndarray:
+        """
+        Returns the happiness level of all voters in a np.ndarray
+        """
         happiness = np.zeros(self.preferences.shape[1])
 
         for i in range(self.preferences.shape[1]):
@@ -47,10 +50,17 @@ class HappinessLevel:
 
     @property
     def happiness_level(self) -> float:
+        """
+        Returns the sum of all happiness level
+        """
         return self.all_happiness_level.sum()
 
     @property
     def happiness_level_dict(self) -> dict:
+        """
+        Returns the happiness level of all voters in a dictionary
+        with the column names as keys and the happiness level as values
+        """
         if self.columns is None:
             raise ValueError("Columns not defined")
         return dict(zip(self.columns, self.all_happiness_level))
