@@ -35,12 +35,14 @@ class HappinessLevel:
         happiness = np.zeros(self.preferences.shape[1])
 
         for i in range(self.preferences.shape[1]):
-            pass
+            preference = self.preferences[:, i]  # Preferences of the i-th voter
+            # happiness[i] = HAPPINESS_LEVEL
+            # self.winner for accessing the winner : str
             # YOUR CODE HERE FOR CALCULATING THE HAPPINESS LEVEL
 
         # YOUR CODE HERE FOR MAP THE VALUES
 
-        # [0.5, 1, 1, 0]
+        # Example of happiness: [0.5, 1, 1, 0]
         return happiness
 
     @property
