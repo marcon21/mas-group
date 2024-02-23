@@ -4,8 +4,11 @@ from typing import List, Union
 from outcomes import Result
 
 
-# Happiness level, ranges from 0 to -inf
 class HappinessLevel:
+    """
+    Happiness level, ranges from 0 to -inf
+    """
+
     def __init__(
         self, preferences: Union[np.ndarray, pd.DataFrame], winner: Union[str, Result]
     ) -> None:
@@ -31,17 +34,18 @@ class HappinessLevel:
     def all_happiness_level(self) -> np.ndarray:
         happiness = np.zeros(self.preferences.shape[1])
 
-        # For each voter, find the index of the winner and assign the happiness level
         for i in range(self.preferences.shape[1]):
-            personal_preferences = self.preferences[:, i]
-            winner_index = np.where(personal_preferences == winner)[0][0]
-            happiness[i] = -winner_index
+            pass
+            # YOUR CODE HERE FOR CALCULATING THE HAPPINESS LEVEL
 
+        # YOUR CODE HERE FOR MAP THE VALUES
+
+        # [0.5, 1, 1, 0]
         return happiness
 
     @property
     def happiness_level(self) -> float:
-        return self.all_happiness_level.mean()
+        return self.all_happiness_level.sum()
 
     @property
     def happiness_level_dict(self) -> dict:
@@ -59,15 +63,11 @@ if __name__ == "__main__":
     import outcomes as o
 
     voting_table = utils.read_voting(
-        "../input/voting_result.json", table_name="voting2"
+        "../input/voting_result.json", table_name="voting"
     ).to_pandas()
     winner = o.plurality_outcome(voting_table).winner
 
     print(voting_table, f"\nWinner: {winner}", "\n")
 
     h = HappinessLevel(voting_table, winner)
-    print(h.happiness_level_dict)
-    # print(voting_table.columns.to_list(), h)
-
-    h = HappinessLevel(voting_table.iloc[:, 0], winner)
     print(h.happiness_level_dict)
