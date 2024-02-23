@@ -1,6 +1,7 @@
 from src import outcomes as o
 import unittest
 import numpy as np
+from src.outcomes import Result
 
 
 class TestOutComes(unittest.TestCase):
@@ -27,8 +28,29 @@ class TestOutComes(unittest.TestCase):
     """
 
     def test_plurality_should_returns_general_expected_outcome(self):
-        expected_outcome = [("B", 3)]
+        expected_outcome = Result({"C": 2, "B": 3, "A": 0, "D": 0})
         outcome = o.plurality_outcome(self.s)
 
-        self.assertCountEqual(outcome, expected_outcome)
-        self.assertListEqual(outcome, expected_outcome)
+        self.assertEqual(outcome.winner, expected_outcome.winner)
+        self.assertDictEqual(outcome, expected_outcome)
+
+    def test_for_two_should_returns_general_expected_outcome(self):
+        expected_outcome = Result({"C": 2, "B": 3, "A": 2, "D": 3})
+        outcome = o.for_two_outcome(self.s)
+
+        self.assertEqual(outcome.winner, expected_outcome.winner)
+        self.assertDictEqual(outcome, expected_outcome)
+
+    def test_for_veto_should_returns_general_expected_outcome(self):
+        expected_outcome = Result({"C": 4, "B": 3, "A": 3, "D": 5})
+        outcome = o.veto_outcome(self.s)
+
+        self.assertEqual(outcome.winner, expected_outcome.winner)
+        self.assertDictEqual(outcome, expected_outcome)
+
+    def test_for_border_count_should_returns_general_expected_outcome(self):
+        expected_outcome = Result({"C": 8, "B": 9, "A": 5, "D": 8})
+        outcome = o.borda_outcome(self.s)
+
+        self.assertEqual(outcome.winner, expected_outcome.winner)
+        self.assertDictEqual(outcome, expected_outcome)
