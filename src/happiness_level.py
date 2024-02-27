@@ -1,6 +1,7 @@
 import numpy as np
 import math
 
+#Function for getting all the happiness levels
 def happiness_level(pref: np.array, outcome: str) -> np.array:
     m, n = pref.shape
     new_voting = np.array([[pref[i][j] for i in range(m)] for j in range(n)])
@@ -10,20 +11,28 @@ def happiness_level(pref: np.array, outcome: str) -> np.array:
         h.append(ind_happiness(ind_pref, outcome, m))
     return h
 
+#Function for getting the happiness of just one individual
 def ind_happiness(ind_pref: np.array, outcome: str, m: int) -> float:
     d = np.where(ind_pref==outcome)[0][0]
     h = distr_h(d, m)
     return h
     
-
+#Distribution of h based on d (position of the option that won)
 def distr_h(d, m):
     h_i = (1-2/(m-1)*d)
     k = 0.95
-    c = 1/math.atanh(k)
-    h = math.atanh(h_i*k)*c
+    c = 1/(2*math.atanh(k))
+    h = math.atanh(h_i*k)*c+0.5
     return h
 
+def distr_h_straight(d, m):
+    h_i = (1-1/(m-1)*d)
+    return h_i
+
 def main():
+
+    #The main function is supposed to plot the possible values of happiness based on the amount of possible voting options.
+    #Also, it prints the different happiness levels for each voter
     import warnings
 
     warnings.filterwarnings("ignore")
@@ -36,7 +45,7 @@ def main():
        ['B', 'A', 'B', 'A', 'C']])
     h = happiness_level(voting, 'C')
     print(h)
-    m = voting.shape[0]
+    m = 6
 
     x_values = np.linspace(0, 99, 100)
     y_values = list()
