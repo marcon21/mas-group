@@ -2,28 +2,17 @@ import numpy as np
 import pandas as pd
 from typing import List, Union
 from outcomes import Result
+from utils import VotingArray
 
 
 class HappinessLevel:
     """
-    Happiness level, ranges from 0 to 1
+    Happiness level
     """
 
-    def __init__(
-        self, preferences: Union[np.ndarray, pd.DataFrame], winner: Union[str, Result]
-    ) -> None:
-        if isinstance(preferences, pd.DataFrame):
-            # If preferences is a pd.DataFrame
-            self.preferences = preferences.to_numpy()
-            self.columns = preferences.columns.to_list()
-        elif isinstance(preferences, pd.Series):
-            # If preferences is a pd.Series
-            self.preferences = np.array([[x] for x in preferences.to_numpy()])
-            self.columns = [preferences.name]
-        else:
-            # If preferences is a np.ndarray
-            self.preferences = preferences
-            self.columns = None
+    def __init__(self, preferences: VotingArray, winner: Union[str, Result]) -> None:
+        self.preferences = preferences
+        self.columns = preferences.to_pandas().columns.to_list()
 
         if isinstance(winner, Result):
             self.winner = winner.winner
@@ -74,12 +63,10 @@ if __name__ == "__main__":
     from pprint import pprint
     import outcomes as o
 
-    voting_table = utils.read_voting(
-        "../input/voting_result.json", table_name="voting"
-    ).to_pandas()
-    winner = o.plurality_outcome(voting_table).winner
+    voting_array = utils.read_voting("../input/voting_result.json", table_name="voting")
+    winner = o.plurality_outcome(voting_array).winner
 
-    print(voting_table, f"\nWinner: {winner}", "\n")
+    print(voting_array.to_pandas(), f"\nWinner: {winner}", "\n")
 
-    h = HappinessLevel(voting_table, winner)
+    h = HappinessLevel(voting_array, winner)
     print(h.happiness_level_dict)

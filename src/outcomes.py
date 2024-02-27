@@ -6,7 +6,7 @@ UnionArray = Union[np.ndarray, pd.DataFrame]
 
 
 class Result(dict):
-    """''
+    """
     # Class to store the results of the voting,
     # like a dictionary but with a winner field
     """
@@ -45,8 +45,9 @@ def outcome_wrapper(func):
 
         res = func(s, *args, **kwargs)
 
+        # Adds all the remaining alternatives with 0 votes
         if isinstance(res, dict):
-            all_alternatives = np.unique(preferences)
+            all_alternatives = np.unique(s)
             result_dict = {key: res.get(key, 0) for key in all_alternatives}
             return Result(result_dict)
 
@@ -62,7 +63,7 @@ def plurality_outcome(preferences: UnionArray) -> Result:
     """
     first_prefs = preferences[0, :]
     alternatives, votes = np.unique(first_prefs, return_counts=True)
-    results = dict(zip(alternatives, votes))
+    results = Result(zip(alternatives, votes))
 
     return results
 
@@ -78,10 +79,12 @@ def for_two_outcome(preferences: UnionArray) -> Result:
     first_votes = dict(zip(*np.unique(first_prefs, return_counts=True)))
     second_votes = dict(zip(*np.unique(second_prefs, return_counts=True)))
 
-    results = {
-        k: first_votes.get(k, 0) + second_votes.get(k, 0)
-        for k in first_votes.keys() | second_votes.keys()
-    }
+    results = Result(
+        {
+            k: first_votes.get(k, 0) + second_votes.get(k, 0)
+            for k in first_votes.keys() | second_votes.keys()
+        }
+    )
 
     return results
 
@@ -93,7 +96,7 @@ def veto_outcome(preferences: UnionArray) -> Result:
     """
     last_prefs = preferences[:-1, :]
     alternatives, votes = np.unique(last_prefs, return_counts=True)
-    results = dict(zip(alternatives, votes))
+    results = Result(zip(alternatives, votes))
 
     return results
 
@@ -105,7 +108,7 @@ def borda_outcome(preferences: UnionArray) -> Result:
     """
     n, m = preferences.shape
     alternatives = np.unique(preferences)
-    borda_points = {a: 0 for a in alternatives}
+    borda_points = Result({a: 0 for a in alternatives})
 
     for i in range(n):
         row = preferences[i, :]
@@ -116,7 +119,7 @@ def borda_outcome(preferences: UnionArray) -> Result:
     return borda_points
 
 
-def all_schemas_outcomes(s: UnionArray) -> Result:
+def all_schemas_outcomes(s: UnionArray) -> dict[Result]:
     """
     Getting the outcomes for all the voting schemas
     """
@@ -144,7 +147,3 @@ if __name__ == "__main__":
     outcomes = all_schemas_outcomes(voting_table)
     for v, o in outcomes.items():
         print(f"{v}:\n{o}\n")
-
-    # outcome = plurality_outcome(voting_table)
-    # print(outcome)
-    # print(outcome.winner)
