@@ -6,25 +6,6 @@ from utils import VotingArray
 import math
 
 
-def happiness_level(pref: np.array, outcome: str) -> np.array:
-    m = pref.shape[0]
-    n = pref.shape[1]
-    new_voting = np.array([[pref[i][j] for i in range(m)] for j in range(n)])
-    h = list()
-    for ivoter in range(n):
-        d = np.where(new_voting[ivoter] == outcome)[0][0]
-        h.append(distr_h(d, m))
-    return h
-
-
-def distr_h(d: float, m: int) -> float:
-    h_i = 1 - 2 / (m - 1) * d
-    k = 0.95
-    c = 1 / math.atanh(k)
-    h = math.atanh(h_i * k) * c
-    return h
-
-
 class HappinessLevel:
     """
     Happiness level
@@ -47,12 +28,10 @@ class HappinessLevel:
         happiness = np.zeros(self.preferences.shape[1])
 
         for i in range(self.preferences.shape[1]):
-            preference = self.preferences[:, i]  # Preferences of the i-th voter
-            # happiness[i] = HAPPINESS_LEVEL
-            # self.winner for accessing the winner : str
-            # YOUR CODE HERE FOR CALCULATING THE HAPPINESS LEVEL
+            preference = self.preferences[:, i]  # Preferences of the i-th vote
+            happiness[i] = np.where(preference == self.winner)[0][0]
 
-        # YOUR CODE HERE FOR MAP THE VALUES
+        happiness = np.array([self.distr_h(h) for h in happiness])
 
         # Example of happiness: [0.5, 1, 1, 0]
         return happiness
@@ -74,8 +53,32 @@ class HappinessLevel:
             raise ValueError("Columns not defined")
         return dict(zip(self.columns, self.all_happiness_level))
 
+    def distr_h(self, h: float) -> float:
+        k = 0.95
+        c = 1 / (2 * math.atanh(k))
+        h_i = 1 - 2 / (self.preferences.shape[0] - 1) * h
+        h = math.atanh(h_i * k) * c + 0.5
+        return h
+
     def __repr__(self) -> str:
         return f"Happiness level: {self.happiness_level}"
+
+    def graph_happiness(self):
+        """
+        Graphs the happiness level of all voters ordered by their happiness level with matplotlib
+        """
+        import matplotlib.pyplot as plt
+
+        happiness = self.happiness_level_dict
+        happiness = dict(sorted(happiness.items(), key=lambda item: item[1]))
+
+        plt.plot(list(happiness.values()), "o-")
+        plt.xlabel("Voter")
+        plt.xticks(range(len(happiness)), list(happiness.keys()))
+        plt.xticks(rotation=45)
+        plt.ylabel("Happiness level")
+        plt.title("Happiness level of all voters")
+        plt.show()
 
 
 if __name__ == "__main__":
@@ -83,10 +86,16 @@ if __name__ == "__main__":
     from pprint import pprint
     import outcomes as o
 
-    voting_array = utils.read_voting("../input/voting_result.json", table_name="voting")
+    voting_array = utils.read_voting(
+        "../input/voting_result.json", table_name="voting2"
+    )
+
+    # voting_array = utils.random_voting(n_voters=100, n_candidates=50)
     winner = o.plurality_outcome(voting_array).winner
 
     print(voting_array.to_pandas(), f"\nWinner: {winner}", "\n")
 
     h = HappinessLevel(voting_array, winner)
     print(h.happiness_level_dict)
+
+    # h.graph_happiness()
