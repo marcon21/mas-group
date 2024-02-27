@@ -6,7 +6,7 @@ from outcomes import Result
 
 class HappinessLevel:
     """
-    Happiness level, ranges from 0 to -inf
+    Happiness level, ranges from 0 to 1
     """
 
     def __init__(
