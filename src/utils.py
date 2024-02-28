@@ -22,29 +22,29 @@ def read_voting(file_path: str, table_name: str = "voting") -> VotingArray:
     return voting
 
 
-def generate_candidates(n):
-    """
-    Generates a list of candidates with n elements
-    """
-    from string import ascii_uppercase
-    import itertools
-
-    # Python Generator to generate candidate names
-    def iter_all_strings():
-        size = 1
-        while True:
-            for s in itertools.product(ascii_uppercase, repeat=size):
-                yield "".join(s)
-            size += 1
-
-    # Get the first n elements of the iterator
-    return list(itertools.islice(iter_all_strings(), n))
-
-
 def random_voting(n_voters: int, n_candidates: int) -> VotingArray:
     """
     Generates a random voting table with n_voters and n_candidates, the candidates are the letter of the alphabet
     """
+
+    def generate_candidates(n):
+        """
+        Generates a list of candidates with n elements
+        """
+        from string import ascii_uppercase
+        import itertools
+
+        # Python Generator to generate candidate names
+        def iter_all_strings():
+            size = 1
+            while True:
+                for s in itertools.product(ascii_uppercase, repeat=size):
+                    yield "".join(s)
+                size += 1
+
+        # Get the first n elements of the iterator
+        return list(itertools.islice(iter_all_strings(), n))
+
     candidates = generate_candidates(n_candidates)
     voting = np.empty(
         (n_candidates, n_voters), dtype=f"U{len(max(candidates, key=len))}"
