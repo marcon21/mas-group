@@ -139,7 +139,7 @@ if __name__ == "__main__":
     from pprint import pprint
 
     voting_table = utils.read_voting(
-        "../input/voting_result.json", table_name="voting3"
+        "input/voting_result.json", table_name="voting3"
     ).to_pandas()
 
     print(voting_table, "\n")
