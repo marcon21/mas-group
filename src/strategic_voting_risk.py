@@ -8,11 +8,22 @@ from src.happiness_level import HappinessLevel
 
 
 class StrategicVoting:
-    def __init__(self, preferences: VotingArray) -> None:
-        self.preferences = preferences
-        self.all = DataFrame()
+    def __init__(self, preferences: VotingArray):
+        self.preferences: VotingArray = preferences
+        self.happiness: HappinessLevel = None
 
-    def find(self, happiness: HappinessLevel, schema_outcome_f: Callable):
+        self.all = DataFrame()
+        self.best = DataFrame()
+        self.risk = None
+
+    def run(self, happiness: HappinessLevel, schema_outcome_f: Callable):
+        self.happiness = happiness
+        self._find_all(schema_outcome_f)
+        self._find_best()
+        self._compute_risk()
+        return self
+
+    def _find_all(self, schema_outcome_f: Callable):
         result = schema_outcome_f(self.preferences)
         strategic_voting = []
 
@@ -32,16 +43,16 @@ class StrategicVoting:
                         0
                     ][0]
                     voter_happiness = new_happiness.linear_happiness_level(new_vwr)
-                    if voter_happiness > happiness.voter[i]:
+                    if voter_happiness > self.happiness.voter[i]:
                         strategic_voting.append(
                             (
                                 i,
                                 p,
                                 new_result,
                                 new_happiness.voter[i],
-                                happiness.voter[i],
+                                self.happiness.voter[i],
                                 new_happiness.total,
-                                happiness.total,
+                                self.happiness.total,
                             )
                         )
 
@@ -56,10 +67,37 @@ class StrategicVoting:
                 "new_result",
                 "strategic_H",
                 "previous_H",
-                "stategic_overall_H",
-                "startegic_overall_H",
+                "strategic_overall_H",
+                "previous_overall_H",
             ],
         )
 
         # Print only the winner from Result
         self.all["new_result"] = self.all["new_result"].apply(lambda x: x.winner)
+
+    def _find_best(self):
+        """
+        Build table with best strategic voting for each voter. The best strat is defined
+        as the strat overall voter strats with max strategic_H and strategic_overall_H.
+
+        Sorts all strat votign table by decreasing "strategic_H", "strategic_overall_H".
+        Drops voter duplicates by keeping the first instance in the table (hence the one)
+        with highest ("strategic_H", "strategic_overall_H").
+        """
+        if self.all.empty:
+            AttributeError("All strategic voting missing. Call find()")
+
+        self.best = self.all.sort_values(
+            ["strategic_H", "strategic_overall_H"], ascending=False
+        ).drop_duplicates(subset=["voter"], keep="first")
+
+    def _compute_risk(self):
+        """
+        First naive implementation of risk.
+        """
+        if self.best.empty:
+            AttributeError("Best strategic voting missing. Call find_best()")
+
+        num_unhappy_voters = np.where(self.happiness.voter != 1)[0].shape[0]
+        voter_risk = (self.best["strategic_H"] - self.best["previous_H"]).sum()
+        self.risk = voter_risk / num_unhappy_voters
