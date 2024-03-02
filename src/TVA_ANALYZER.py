@@ -5,8 +5,7 @@ from outcomes import *
 from happiness_level import HappinessLevel
 from strategic_voting_risk import StrategicVoting
 from utils import VotingArray
-
-
+import voting_scenario_generator as vsg  # Import your scenario generator
 
 class TVA_ANALYZER:
     
@@ -44,9 +43,8 @@ class TVA_ANALYZER:
         
         # Check if the length of voting_scheme matches the number of candidates
         if voting_scheme.shape[0] != voting_preferences.shape[1]:
-            raise ValueError("Length of voting scheme must be equal to the number of candidates. There are " + str(voting_scheme.shape[0]) 
-                             + " votes in the scheme and " + str(voting_preferences.shape[1]) + " preferences per voter")
-        
+            raise ValueError(f"Length of voting scheme must match number of preferences. Found {voting_scheme.shape[0]} votes in the scheme and {voting_preferences.shape[1]} preferences per voter.")
+
         # Check if there are at least two candidates
         if voting_preferences.shape[1] < 2:
             raise ValueError("There must be at least two candidates")
@@ -105,24 +103,25 @@ class TVA_ANALYZER:
         
         raise ValueError("Invalid voting scheme")
 
+
 if __name__ == "__main__":
     import utils as utils
-    from pprint import pprint
 
-    voting_table = utils.read_voting(
-        "input/voting_result.json", table_name="voting5"
-    )
+    # Generate the voting scenarios first
+    num_examples, num_preferences = vsg.main()  # Call the generator which will prompt user inputs and generate the examples
 
-    voting_scheme = np.array([1,0,0,0,0,0])
+    for i in range(1, num_examples + 1):
+        table_name = f"voting{i}"
+        print(f"\nAnalyzing {table_name}...")
 
-    print(voting_table, "\n")
+        # Use the existing read_voting function to fetch the specific voting table
+        voting_table = utils.read_voting("input/voting_result.json", table_name=table_name)
 
-    # Instantiate the TVA_ANALYZER with your data
-    analyzer = TVA_ANALYZER(voting_scheme, voting_table)
+        # Define voting_scheme based on the requirements or data
+        voting_scheme = np.array([1, 0, 0] + [0] * (len(voting_table[0]) - 3))
 
-    # Run the analysis
-    analysis_results = analyzer.analyze()  # This should return an Analysis object
+        analyzer = TVA_ANALYZER(voting_scheme, voting_table)
+        analysis_results = analyzer.analyze()
 
-    # Print the analysis results (assuming your Analysis class has a __str__ method)
-    print(analysis_results)
-    
+        print(analysis_results)
+
