@@ -3,8 +3,8 @@ from typing import Callable, List, Tuple
 from pandas import DataFrame
 import numpy as np
 
-from src.utils import VotingArray
-from src.happiness_level import HappinessLevel
+from utils import VotingArray
+from happiness_level import HappinessLevel
 
 
 class StrategicVoting:

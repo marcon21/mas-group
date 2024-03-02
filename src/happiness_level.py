@@ -1,8 +1,8 @@
 import numpy as np
 from typing import Union
-from src.outcomes import Result
+from outcomes import Result
 import matplotlib.pyplot as plt
-from src.utils import VotingArray
+from utils import VotingArray
 import math
 
 
@@ -22,8 +22,8 @@ class HappinessLevel:
         else:
             self.winner = winner
 
-    def __repr__(self) -> str:
-        return f"Happiness level: {self.happiness_level}"
+    # def __repr__(self) -> str:
+    #     return f"Happiness level: {self.happiness_level}"
 
     @property
     def voter(self) -> np.ndarray:
@@ -117,13 +117,16 @@ class HappinessLevel:
         plt.grid(True)
         plt.show()
 
+    def graph_happiness(self):
+        self.plot()
+
 
 if __name__ == "__main__":
-    import utils
+    import src.utils as utils
     from pprint import pprint
-    import outcomes as o
+    import src.outcomes as o
 
-    voting_array = utils.read_voting("input/voting_result.json", table_name="voting2")
+    voting_array = utils.read_voting("input/voting_result.json", table_name="voting")
 
     # voting_array = utils.random_voting(n_voters=100, n_candidates=50)
     winner = o.plurality_outcome(voting_array).winner
@@ -132,5 +135,6 @@ if __name__ == "__main__":
 
     h = HappinessLevel(voting_array, winner)
     print(h.happiness_level_dict)
+    # print(h.histogram)
 
-    # h.graph_happiness()
+    h.graph_happiness()

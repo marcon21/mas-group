@@ -135,7 +135,7 @@ def all_schemas_outcomes(s: UnionArray) -> dict[Result]:
 
 
 if __name__ == "__main__":
-    import utils
+    import utils as utils
     from pprint import pprint
 
     voting_table = utils.read_voting(

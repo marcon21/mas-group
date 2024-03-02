@@ -1,5 +1,5 @@
 import numpy as np
-from TVA_ANALYZER import Result
+from outcomes import Result
 from happiness_level import HappinessLevel
 
 
@@ -30,7 +30,7 @@ class Analysis:
         """
         return (
             f"Outcome: {self.outcome}\n"
-            f"Happiness: {self.happiness}\n"
+            f"Happiness: {self.happiness.happiness_level_dict}\n"
             f"Total Happiness: {self.total_happiness}\n"
             f"Strategies: {self.strategies}\n"
             f"Risk: {self.risk}\n"
