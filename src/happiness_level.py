@@ -15,6 +15,7 @@ class HappinessLevel:
         self.preferences = preferences
         self.columns = preferences.to_pandas().columns.to_list()
         self.voters_winner_rank = np.zeros(self.preferences.shape[1])
+        self._all_happiness_level = None
 
         if isinstance(winner, Result):
             self.winner = winner.winner
@@ -25,28 +26,31 @@ class HappinessLevel:
         return f"Happiness level: {self.happiness_level}"
 
     @property
-    def all_happiness_level(self) -> np.ndarray:
+    def voter(self) -> np.ndarray:
         """
         Returns the happiness level of all voters in a np.ndarray
         """
+        if self._all_happiness_level is not None:
+            return self._all_happiness_level
+
         num_voters = self.preferences.shape[1]
-        happiness = np.zeros(num_voters)
+        self._all_happiness_level = np.zeros(num_voters)
 
         for i in range(num_voters):
             preference = self.preferences[:, i]  # Preferences of the i-th vote
             voter_winner_rank = np.where(preference == self.winner)[0][0]
             self.voters_winner_rank[i] = voter_winner_rank
-            happiness[i] = self.happiness_level(voter_winner_rank)
+            self._all_happiness_level[i] = self.happiness_level(voter_winner_rank)
 
         # Example of happiness: [0.5, 1, 1, 0]
-        return happiness
+        return self._all_happiness_level
 
     @property
-    def sum_happiness_level(self) -> float:
+    def total(self) -> float:
         """
         Returns the sum of all happiness level
         """
-        return self.all_happiness_level.sum()
+        return self.voter.sum()
 
     @property
     def happiness_level_dict(self) -> dict:
@@ -56,7 +60,7 @@ class HappinessLevel:
         """
         if self.columns is None:
             raise ValueError("Columns not defined")
-        return dict(zip(self.columns, self.all_happiness_level))
+        return dict(zip(self.columns, self.voter))
 
     def happiness_level(self, vwr: int) -> float:
         """
@@ -95,7 +99,7 @@ class HappinessLevel:
         """
         self.distribution_plot()
 
-        plt.scatter(self.voters_winner_rank, self.all_happiness_level, c="r")
+        plt.scatter(self.voters_winner_rank, self.voter, c="r")
         plt.xlabel("Voters Winner Rank")
         plt.ylabel("Happiness Level")
         plt.title("Happiness Level of All Voters")
@@ -104,7 +108,7 @@ class HappinessLevel:
         plt.show()
 
     def histogram(self):
-        counts, bins = np.histogram(self.all_happiness_level)
+        counts, bins = np.histogram(self.voter)
         plt.hist(bins[:-1], bins, weights=counts)
 
         plt.xlabel("Happiness Level")
