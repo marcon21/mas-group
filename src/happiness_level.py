@@ -22,8 +22,6 @@ class HappinessLevel:
         else:
             self.winner = winner
 
-    # def __repr__(self) -> str:
-    #     return f"Happiness level: {self.happiness_level}"
 
     @property
     def voter(self) -> np.ndarray:
