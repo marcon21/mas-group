@@ -1,10 +1,12 @@
 import numpy as np
-from TVA_ANALYZER import Result
-from happiness_level import HappinessLevel
+from src.outcomes import Result
+from src.happiness_level import HappinessLevel
+from src.utils import display_vote_graph
+from src.strategic_voting_risk import StrategicVoting
 
 
 class Analysis:
-    def __init__(self, outcome: Result, happiness: HappinessLevel, total_happiness: float, strategies: np.ndarray, risk: float):
+    def __init__(self, outcome: Result, happiness: HappinessLevel, total_happiness: float, strategies: StrategicVoting, risk: float):
         """
         Initialize an Analysis object with the provided parameters.
 
@@ -12,7 +14,7 @@ class Analysis:
             outcome (float): The outcome of the voting analysis.
             happiness (pd.Series): A Series containing the happiness level for each voter.
             total_happiness (float): The total happiness calculated based on the individual happiness levels.
-            strategies (list[pd.DataFrame]): A list of DataFrames containing information about strategic voting behavior.
+            strategies (lStrategicVoting): 
             risk (int): The calculated risk associated with the voting analysis.
         """
         self.outcome = outcome
@@ -21,17 +23,11 @@ class Analysis:
         self.strategies = strategies
         self.risk = risk
         
-    def __str__(self):
-        """
-        Returns a string representation of the Analysis object.
-
-        Returns:
-            str: A string containing the outcome, happiness, total happiness, strategies, and risk of the analysis.
-        """
-        return (
-            f"Outcome: {self.outcome}\n"
-            f"Happiness: {self.happiness}\n"
-            f"Total Happiness: {self.total_happiness}\n"
-            f"Strategies: {self.strategies}\n"
-            f"Risk: {self.risk}\n"
-        )
+    def represent(self):
+    
+        display_vote_graph(self.outcome)
+        self.happiness.plot()
+        print("Total happiness is:",self.total_happiness)
+        print(self.strategies.all)
+        print("Total risk is:",self.total_happiness)
+        
