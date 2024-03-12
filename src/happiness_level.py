@@ -8,7 +8,7 @@ import math
 
 class HappinessLevel:
     """
-    Happiness level
+    Happiness level :)
     """
 
     def __init__(self, preferences: VotingArray, winner: Union[str, Result]) -> None:
