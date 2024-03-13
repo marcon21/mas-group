@@ -72,15 +72,6 @@ class HappinessLevel:
         h = math.atanh(h_i * k) * c + 0.5
         return h
 
-    def linear_happiness_level(self, vwr: int) -> float:
-        """
-        Simplified linear happiness level. Used as an estimate for stategical voting
-        finder.
-
-        vwr: (voter winner rank) preference rank of winner by voter i.
-        """
-        return 1 - np.divide(vwr, self.preferences.shape[0] - 1)
-
     def distribution_plot(self, show=False):
         x = np.linspace(0, self.preferences.shape[0] - 1, 1000)
         y = [self.happiness_level(v) for v in x]
