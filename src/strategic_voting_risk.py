@@ -42,7 +42,7 @@ class StrategicVoting:
                     new_vwr = np.argwhere(self.preferences[:, i] == new_result.winner)[
                         0
                     ][0]
-                    voter_happiness = new_happiness.linear_happiness_level(new_vwr)
+                    voter_happiness = new_happiness.happiness_level(new_vwr)
                     if voter_happiness > self.happiness.voter[i]:
                         strategic_voting.append(
                             (
