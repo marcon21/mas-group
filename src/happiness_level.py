@@ -4,6 +4,7 @@ from src.outcomes import Result
 import matplotlib.pyplot as plt
 from src.utils import VotingArray
 import math
+import pandas as pd
 
 
 class HappinessLevel:
@@ -13,7 +14,7 @@ class HappinessLevel:
 
     def __init__(self, preferences: VotingArray, winner: Union[str, Result]) -> None:
         self.preferences = preferences
-        self.columns = preferences.to_pandas().columns.to_list()
+        self.columns = pd.DataFrame(preferences).columns.to_list()
         self.voters_winner_rank = np.zeros(self.preferences.shape[1])
         self._all_happiness_level = None
 
