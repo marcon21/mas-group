@@ -97,7 +97,7 @@ def find_stable_coalitions_by_compromising(max_coal, voting_df, happiness_level,
 
                         if analyze_core(coal_new_h) == True:
 
-                            print(f'Burying {alt} made everyone in the group {coal_id} happier, here the new winner:  ', new_result)
+                            print(f'Pushing {alt} made everyone in the group {coal_id} happier, here the new winner:  ', new_result)
                             coal.append((coal_new_h, new_result))
 
     return coal
