@@ -1,6 +1,14 @@
 import json
 import numpy as np
 import pandas as pd
+from enum import Enum
+
+
+class VotingSchemas(Enum):
+    PLURALITY_VOTING = "Plurality Voting"
+    VOTING_FOR_TWO = "Voting for Two"
+    VETO_VOTING = "Veto Voting"
+    BORDA_VOTING = "Borda Voting"
 
 
 class VotingArray(np.ndarray):
