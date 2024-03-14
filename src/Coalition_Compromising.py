@@ -16,7 +16,7 @@ def remove_elements_above_or_equal_index(lst, index):
 
 
 def find_new_happiness(manipulations, coalition, voting_df): #Function that for a manipulation of a coalition gives you the new happiness values
-    n_cand = len(voting_df.columns)-2
+    n_cand = len(voting_df.columns)-1
     coalition['manipulation']=manipulations
     indici = coalition.index
     df = pd.DataFrame(manipulations, index= indici, columns=[i for i in range(0, n_cand)])
@@ -52,7 +52,6 @@ def find_stable_coalitions_by_compromising(max_coal, voting_df, happiness_level,
     rankings = np.array(others.T)
     cor_mat, _ = spearmanr(rankings[:-2])
     dsim_mat = np.around(1 - cor_mat, decimals=4)
-    
     np.fill_diagonal(dsim_mat, 0)
 
     #find stable coalitions
