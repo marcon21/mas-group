@@ -127,4 +127,7 @@ class StrategicVoting:
 
         num_unhappy_voters = np.where(self.happiness.voter != 1)[0].shape[0]
         voter_risk = (self.best["strategic_H"] - self.best["previous_H"]).sum()
-        self.risk = voter_risk / num_unhappy_voters
+        if num_unhappy_voters == 0:
+            self.risk = 0
+        else:
+            self.risk = voter_risk / num_unhappy_voters
