@@ -5,8 +5,12 @@ from src.outcomes import plurality_outcome
 from src.happiness_level import HappinessLevel
 import numpy as np 
 import pandas as pd
+import hashlib
 
 
+def get_df_hash(df): 
+    df_bytes = df.to_json().encode()
+    return hashlib.md5(df_bytes).hexdigest()
 
 def remove_elements_above_or_equal_index(lst, index): 
     if index < 0 or index >= len(lst):
@@ -56,6 +60,8 @@ def find_stable_coalitions_by_compromising(max_coal, voting_df, happiness_level,
 
     #find stable coalitions
     coal = []
+    coal_index= {}
+   
     for num in range(max_coal, 1, -1):
 
         clustering = AgglomerativeClustering(n_clusters=num, affinity='precomputed', linkage='average') #do clustering
@@ -65,44 +71,45 @@ def find_stable_coalitions_by_compromising(max_coal, voting_df, happiness_level,
         for coal_id, coalition in others.groupby('gruppo'):
         
         
-            better_op=[]
+            
+            if get_df_hash(coalition.iloc[:, :-2]) not in coal_index:
 
-            for index, row in coalition.iterrows():
-                pref = list(row.iloc[0:-2])
-                ind = pref.index(win) 
-                candidates = set(remove_elements_above_or_equal_index(pref, ind)) #find the candidates above the winner
-                better_op.append(candidates) 
-        
-            if len(better_op)>1: #if the coalition is bigg than 1
-                intersection = better_op[1].copy()
-                for el in better_op:
-                    intersection = set.intersection(el, intersection)
+                better_op=[]
+                coal_index[get_df_hash(coalition)]=coalition
 
-                if len(intersection)>0:
+                for index, row in coalition.iterrows():
+                    pref = list(row.iloc[0:-2])
+                    ind = pref.index(win) 
+                    candidates = set(remove_elements_above_or_equal_index(pref, ind)) #find the candidates above the winner
+                    better_op.append(candidates) 
+            
+                if len(better_op)>1: #if the coalition is bigg than 1
+                    intersection = better_op[1].copy()
+                    for el in better_op:
+                        intersection = set.intersection(el, intersection)
 
-                    for alt in intersection: #try the alternatives in the intersection
+                    if len(intersection)>0:
 
-                        man=[] #initialize the list with the voters manipulations 
+                        for alt in intersection: #try the alternatives in the intersection
 
-                        for index, row in coalition.iterrows():
-                            pref = list(row.iloc[0:-2])
-                            ind = pref.index(alt)
-                            pref.pop(ind)
-                            pref.insert(0, alt)
-                            man.append(pref) 
+                            man=[] #initialize the list with the voters manipulations 
 
-                        coal_new_h, new_result = find_new_happiness(man, coalition, voting_df) #compute the new happiness
+                            for index, row in coalition.iterrows():
+                                pref = list(row.iloc[0:-2])
+                                ind = pref.index(alt)
+                                pref.pop(ind)
+                                pref.insert(0, alt)
+                                man.append(pref) 
 
-                        coalition = coalition.iloc[:, :-1]
+                            coal_new_h, new_result = find_new_happiness(man, coalition, voting_df) #compute the new happiness
 
-                        if analyze_core(coal_new_h) == True:
+                            coalition = coalition.iloc[:, :-1]
 
-                            print(f'Pushing {alt} made everyone in the group {coal_id} happier, here the new winner:  ', new_result)
-                            coal.append((coal_new_h, new_result))
+                            if analyze_core(coal_new_h) == True:
 
+                                #print(f'Pushing {alt} made everyone in the group {coal_id} happier, here the new winner:  ', new_result)
+                                coal.append((coal_new_h, new_result))
+    print(get_df_hash)
     return coal
 
-                    
-
-                
 
