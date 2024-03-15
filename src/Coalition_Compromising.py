@@ -73,9 +73,8 @@ def find_stable_coalitions_by_compromising(max_coal, voting_df, happiness_level,
         
             
             if get_df_hash(coalition.iloc[:, :-2]) not in coal_index:
-
                 better_op=[]
-                coal_index[get_df_hash(coalition)]=coalition
+                coal_index[get_df_hash(coalition.iloc[:, :-2])]=coalition
 
                 for index, row in coalition.iterrows():
                     pref = list(row.iloc[0:-2])
@@ -107,9 +106,10 @@ def find_stable_coalitions_by_compromising(max_coal, voting_df, happiness_level,
 
                             if analyze_core(coal_new_h) == True:
 
-                                #print(f'Pushing {alt} made everyone in the group {coal_id} happier, here the new winner:  ', new_result)
+                                print(f'Pushing {alt} made everyone in the group {coal_id} happier, here the new winner:  ', new_result)
                                 coal.append((coal_new_h, new_result))
-    print(get_df_hash)
+
+
     return coal
 
 
