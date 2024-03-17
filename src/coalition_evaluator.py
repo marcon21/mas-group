@@ -1,5 +1,5 @@
 import numpy as np
-from itertools import combinations, product
+from itertools import combinations, product, permutations
 from src.happiness_level import HappinessLevel
 from src.outcomes import plurality_outcome, for_two_outcome, borda_outcome, veto_outcome
 from src.utils import VotingArray # or any other needed imports
@@ -12,47 +12,37 @@ def evaluate_coalition_strategic_voting_plurality(voting_data: VotingArray) -> l
 
     # Original setup
     original_winner = plurality_outcome(voting_data).winner
-    print(voting_data)
-    print("original winner: " + original_winner + "\n")
     original_happiness = HappinessLevel(voting_data, original_winner)
 
     # Analyzing possible coalitions
     for r in range(2, num_voters + 1):
-        for initial_coalition in combinations(range(num_voters), r):
+        for coalition in combinations(range(num_voters), r):
             for candidate in set(voting_data[0, :]):  # Potential strategic votes
-                # Unique identifier for a coalition scenario based on its members and the strategic candidate
-                coalition_key = (tuple(sorted(initial_coalition)), candidate)
-                # Check if this scenario was already evaluated
-                if coalition_key in evaluated_scenarios:
-                    continue  # Skip if already evaluated
-
                 new_voting_array = voting_data.copy()  # Make a new array for changes
                 actual_coalition = []  # Track actual members who changed their vote
 
-                for member in initial_coalition:
+                for member in coalition:
                     if candidate in new_voting_array[:, member]:
                         idx = np.where(new_voting_array[:, member] == candidate)[0][0]
                         if idx != 0:  # Only consider if candidate is not already the top choice
                             new_voting_array[:, member] = np.roll(new_voting_array[:, member], -idx)
-                            actual_coalition.append(member)  # Add to actual coalition
+                            actual_coalition.append(member)
 
-                if actual_coalition:
+                actual_coalition.sort()  # Ensure the actual coalition list is ordered for consistency
+                scenario_key = (tuple(actual_coalition), candidate)  # Define scenario based on actual changes
+
+                if scenario_key not in evaluated_scenarios:
                     new_winner = plurality_outcome(new_voting_array).winner
-                    new_happiness = HappinessLevel(voting_data, new_winner)
+                    if new_winner != original_winner:
+                        new_happiness = HappinessLevel(voting_data, new_winner)
+                        happiness_diff = {member: new_happiness.happiness_level_dict[f"voter_{member}"] - original_happiness.happiness_level_dict[f"voter_{member}"] for member in actual_coalition}
+                        if all(change > 0 for change in happiness_diff.values()):  # Check all members are happier
+                            evaluated_scenarios.add(scenario_key)  # Mark this scenario as evaluated
+                            successful_coalitions.append((actual_coalition, candidate, new_winner, happiness_diff))
 
-                    # Check if all actual coalition members are happier with the new outcome
-                    if all(new_happiness.happiness_level_dict[f"voter_{member}"] > original_happiness.happiness_level_dict[f"voter_{member}"] for member in actual_coalition):
-                        successful_coalitions.append((actual_coalition, candidate, new_winner))
-                        evaluated_scenarios.add(coalition_key)  # Mark this scenario as evaluated
-                        print(new_voting_array)
-                        print(f"Successful Coalition\n: {actual_coalition}, Strategic Vote: {candidate}, New Winner: {new_winner}")
-                        print("Changes in Happiness Levels for Coalition Members:")
-                        for member in actual_coalition:
-                            happiness_diff = new_happiness.happiness_level_dict[f"voter_{member}"] - original_happiness.happiness_level_dict[f"voter_{member}"]
-                            print(f"Voter {member}: Happiness Change = {happiness_diff:.3f}")
-                        print("\n")
-
+    # Return after all coalitions are evaluated to avoid repetitive print statements
     return successful_coalitions
+
 
 
 def evaluate_coalition_strategic_voting_for_two(voting_data: VotingArray) -> list:
@@ -167,13 +157,82 @@ def evaluate_coalition_strategic_voting_veto(voting_data: VotingArray):
 
     return successful_coalitions
 
+def evaluate_coalition_strategic_voting_borda(voting_data: VotingArray):
+    num_voters = voting_data.shape[1]
+    candidates = list(set(voting_data.flatten()))
+    successful_coalitions = []
+    unique_coalitions = set()  # To track unique coalitions and prevent duplication
+    original_winner = borda_outcome(voting_data).winner
+    original_happiness = HappinessLevel(voting_data, original_winner)
+
+    # Analyze potential coalitions of all sizes
+    for r in range(1, num_voters + 1):
+        for coalition in combinations(range(num_voters), r):
+            # Evaluate all possible rearrangements of preferences for each coalition member
+            for new_preference_combination in product(permutations(candidates), repeat=len(coalition)):
+                new_voting_array = voting_data.copy()
+                happiness_changes = {}
+                strategic_changes = {}
+                effective_coalition = []
+
+                for voter_idx, voter in enumerate(coalition):
+                    new_preferences = new_preference_combination[voter_idx]
+                    
+                    # Check if the new preferences are different from the original
+                    if not np.array_equal(voting_data[:, voter], new_preferences):
+                        new_voting_array[:, voter] = new_preferences
+                        strategic_changes[voter] = new_preferences
+
+                # Determine new outcome
+                new_winner = borda_outcome(new_voting_array).winner
+                if new_winner != original_winner:
+                    # Check happiness impact on each coalition member
+                    all_happier = True
+                    for voter in coalition:
+                        if voter in strategic_changes:  # Only consider voters who made changes
+                            temp_happiness = HappinessLevel(voting_data, new_winner)
+                            happiness_change = temp_happiness.happiness_level_dict[f'voter_{voter}'] - original_happiness.happiness_level_dict[f'voter_{voter}']
+                            happiness_changes[voter] = happiness_change
+                            if happiness_change > 0:
+                                effective_coalition.append(voter)
+                            else:
+                                all_happier = False
+                                break
+
+                    # Only register the coalition if all involved are happier and necessary
+                    if all_happier and effective_coalition:
+                        # Create a unique signature for this coalition outcome
+                        coalition_signature = (tuple(effective_coalition), new_winner)
+                        if coalition_signature not in unique_coalitions:
+                            unique_coalitions.add(coalition_signature)
+                            successful_coalitions.append((coalition_signature, {v: strategic_changes[v] for v in effective_coalition}, original_winner, happiness_changes))
+                            print(f"New voting configuration:\n{new_voting_array}")
+                            print(f"Effective Coalition: {effective_coalition}, Strategic Changes: {strategic_changes}, Original Winner: {original_winner}, New Winner: {new_winner}")
+                            print("Changes in Happiness Levels for Coalition Members:")
+                            for voter, change in happiness_changes.items():
+                                if voter in effective_coalition:
+                                    print(f"Voter {voter}: Happiness Change = {change:.3f}")
+                            print("\n")
+
+    return successful_coalitions
+
+
 
 
 def print_results_coalition_strategic_voting_plurality(successful_coalitions_plurality):
-        # Display the results
-    print("\nSummary of Successful Coalitions and their Strategic Votes for VOTINGFORTWO scheme:")
-    for (actual_coalition, candidate, new_winner) in successful_coalitions_plurality:
-        print(f"Coalition: {actual_coalition}, Candidate: {candidate}, New Winner: {new_winner}")
+    print("\nSummary of Successful Coalitions under Plurality Voting:")
+    # Iterate through each successful coalition
+    for (coalition, strategic_vote, new_winner, happiness_diff) in successful_coalitions_plurality:
+        # Formatting coalition for printing
+        formatted_coalition = ', '.join([f'Voter_{v}' for v in coalition])
+        # Print out the results for the coalition
+        print(f"\nSuccessful Coalition: {formatted_coalition}, Strategic Vote: {strategic_vote}, New Winner: {new_winner}")
+        # Iterate through each member's happiness change within the coalition
+        for voter, change in happiness_diff.items():
+            print(f"Voter {voter}: Happiness Change = {change:.3f}")
+        # Print a newline for better readability between different coalitions
+        print()
+
 
 
 
@@ -202,6 +261,18 @@ def print_results_coalition_strategic_voting_veto(successful_coalitions_veto):
         print(f"Changes in Happiness Levels for Coalition Members: {formatted_happiness_changes}\n")
 
 
+def print_results_coalition_strategic_voting_borda(successful_coalitions_borda):
+    print("\nSummary of Successful Coalitions and their Strategic Votes BORDA:")
+    for (coalition_signature, strategic_changes_dict, original_winner, happiness_changes) in successful_coalitions_borda:
+        effective_coalition, new_winner = coalition_signature
+        formatted_members = ', '.join([f'Voter_{v}' for v in effective_coalition])
+        formatted_changes = '; '.join([f'Voter_{v} changes to {" > ".join(map(str, prefs))}' for v, prefs in strategic_changes_dict.items()])
+        formatted_happiness_changes = '; '.join([f'Voter_{v}: {change:.3f}' for v, change in happiness_changes.items()])
+
+        print(f"\nSuccessful Coalition Members: {formatted_members}")
+        print(f"Strategic Changes (Borda Rankings): {formatted_changes}")
+        print(f"Original Winner: {original_winner}, New Winner: {new_winner}")
+        print(f"Changes in Happiness Levels for Coalition Members: {formatted_happiness_changes}\n")
 
 
 
