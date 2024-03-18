@@ -20,7 +20,7 @@ class HappinessLevel:
         voting_schema: VotingSchemas,
     ) -> None:
         self.preferences = preferences
-        self.columns = preferences.to_pandas().columns.to_list()
+        self.columns = DataFrame(preferences).columns.to_list()
         self.voting_schema = voting_schema
         self.voters_winner_rank = np.zeros(self.preferences.shape[1])
         self._all_happiness_level = None
