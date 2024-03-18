@@ -30,13 +30,8 @@ def find_new_happiness(
         manipulations, index=indici, columns=[i for i in range(0, n_cand)]
     )
     new_voting_df = voting_df.copy()
-    display(df)
     new_voting_df.loc[indici] = df
-    display(new_voting_df)
-    display(new_voting_df.iloc[:-2, :n_cand].values.T)
-    display(new_voting_df.iloc[:-2, :n_cand].values.T)
-    new_results = plurality_outcome(new_voting_df.iloc[:-2, :n_cand].values.T)
-    print(new_results, new_results.winner)
+    new_results = plurality_outcome(new_voting_df.iloc[:, :n_cand].values.T)
     diz = HappinessLevel(
         voting_df.iloc[:, :n_cand].values.T, new_results.winner, voting_schema
     ).run()
@@ -56,8 +51,6 @@ def analyze_core(coalition):  # Analize if inside or not the code
     real_happ = coalition["H"]
     fake_happ = coalition["New_H"]
 
-    display(coalition)
-
     comparison_result = [fake > real for real, fake in zip(real_happ, fake_happ)]
 
     if all(comparison_result):
@@ -68,8 +61,8 @@ def analyze_core(coalition):  # Analize if inside or not the code
 
 def build_coalition_table(coalitions, previous_H):
     columns = [
-        "voter",
         "coalition_group",
+        "voter",
         "strategic_voting",
         "new_result",
         "strategic_H",
@@ -120,18 +113,16 @@ def find_stable_coalitions_by_compromising(
     # find stable coalitions
     coal = []
     coal_index = {}
-    print(dsim_mat)
+    cluster_epoch = 0
     for num in range(max_coal, 1, -1):
 
         # TODO: why average? and not ward?
-
         clustering = AgglomerativeClustering(
             n_clusters=num, metric="precomputed", linkage="average"
         )  # do clustering
-        clusters = clustering.fit_predict(dsim_mat)
+        clusters = clustering.fit_predict(dsim_mat) + cluster_epoch
+        cluster_epoch += max_coal + 1
         others["gruppo"] = clusters
-
-        print(clusters)
 
         for coal_id, coalition in others.groupby("gruppo"):
 
@@ -168,7 +159,6 @@ def find_stable_coalitions_by_compromising(
                                 pref.pop(ind)
                                 pref.insert(0, alt)
                                 man.append(pref)
-
                             coal_new_h, new_result = find_new_happiness(
                                 man, coalition, voting_df, voting_schema
                             )  # compute the new happiness
