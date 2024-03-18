@@ -1,6 +1,7 @@
 from typing import Union
 import numpy as np
 import pandas as pd
+from src.utils import VotingSchemas
 
 UnionArray = Union[np.ndarray, pd.DataFrame]
 
@@ -23,12 +24,6 @@ class Result(dict):
         max_value = max(self.values())
         keys_max_value = [k for k in self.keys() if self.get(k) == max_value]
         return min(keys_max_value)
-
-    def __repr__(self):
-        """
-        Overriding the __repr__ method to include the winner
-        """
-        return f"Winner: {self.winner}\n{super().__repr__()}"
 
 
 def outcome_wrapper(func):
@@ -124,14 +119,20 @@ def all_schemas_outcomes(s: UnionArray) -> dict[Result]:
     Getting the outcomes for all the voting schemas
     """
     scheme_func = {
-        "Plurality Voting": plurality_outcome,
-        "Voting for Two": for_two_outcome,
-        "Veto Voting": veto_outcome,
-        "Borda Voting": borda_outcome,
+        VotingSchemas.PLURALITY_VOTING.value: plurality_outcome,
+        VotingSchemas.VOTING_FOR_TWO.value: for_two_outcome,
+        VotingSchemas.VETO_VOTING.value: veto_outcome,
+        VotingSchemas.BORDA_VOTING.value: borda_outcome,
     }
 
     scheme_outcome = {n: f(s) for n, f in scheme_func.items()}
     return scheme_outcome
+
+
+def all_schemas_outcomes_to_pandas(o: dict) -> pd.DataFrame:
+    outcomes_df = pd.DataFrame(o).T
+    outcomes_df["Winner"] = [v.winner for v in o.values()]
+    return outcomes_df
 
 
 if __name__ == "__main__":
