@@ -1,13 +1,14 @@
-from scipy.stats import spearmanr
-from sklearn.cluster import AgglomerativeClustering
-from src import utils
-from src.outcomes import plurality_outcome
-from src.happiness_level import HappinessLevel
 import numpy as np
 import pandas as pd
 import hashlib
 from itertools import combinations
 from functools import lru_cache
+from scipy.stats import spearmanr
+from sklearn.cluster import AgglomerativeClustering
+from src import utils
+from src.outcomes import plurality_outcome
+from src.outcomes import borda_outcome
+from src.happiness_level import HappinessLevel
 
 
 def get_df_hash(df):
@@ -23,7 +24,7 @@ def remove_elements_above_or_equal_index(lst, index):
 
 
 def find_new_happiness(
-    manipulations, coalition, voting_df
+    manipulations, coalition, voting_df, voting
 ):  # Function that for a manipulation of a coalition gives you the new happiness values
     n_cand = len(voting_df.columns) - 1
     coalition["manipulation"] = manipulations
@@ -31,9 +32,15 @@ def find_new_happiness(
     df = pd.DataFrame(
         manipulations, index=indici, columns=[i for i in range(0, n_cand)]
     )
+
     new_voting_df = voting_df.copy()
     new_voting_df.loc[indici] = df
-    new_results = plurality_outcome(new_voting_df.iloc[:, :n_cand].values.T)
+    if voting == "plurality":
+        new_results = plurality_outcome(new_voting_df.iloc[:, :n_cand].values.T)
+    elif voting == "borda":
+
+        new_results = borda_outcome(new_voting_df.iloc[:, :n_cand].values.T)
+
     diz = HappinessLevel(
         voting_df.iloc[:, :n_cand].values.T, new_results.winner
     ).happiness_level_dict
@@ -48,7 +55,7 @@ def find_new_happiness(
 
 
 def find_new_happiness2(
-    manipulations, coalition, voting_df
+    manipulations, coalition, voting_df, voting
 ):  # Function that for a manipulation of a coalition gives you the new happiness values
     n_cand = len(voting_df.columns) - 1
     coalition["manipulation"] = manipulations
@@ -59,7 +66,12 @@ def find_new_happiness2(
     new_voting_df = voting_df.copy()
 
     new_voting_df.loc[indici] = df
-    new_results = plurality_outcome(new_voting_df.iloc[:, :n_cand].values.T)
+    if voting == "plurality":
+        new_results = plurality_outcome(new_voting_df.iloc[:, :n_cand].values.T)
+    elif voting == "borda":
+
+        new_results = borda_outcome(new_voting_df.iloc[:, :n_cand].values.T)
+
     diz = HappinessLevel(
         voting_df.iloc[:, :n_cand].values.T, new_results.winner
     ).happiness_level_dict
@@ -86,7 +98,7 @@ def analyze_core(coalition, var1, var2):  # Analize if inside or not the code
         return False
 
 
-def stability_of_coalitions(coal, voting_df, results):
+def stability_of_coalitions(coal, voting_df, results, voting):
 
     combinations_list = []
     stable = True
@@ -129,7 +141,7 @@ def stability_of_coalitions(coal, voting_df, results):
                             man.append(pref)
 
                         coal_new_h, new_result = find_new_happiness2(
-                            man, new_poss_coal.iloc[:, :-1], voting_df
+                            man, new_poss_coal.iloc[:, :-1], voting_df, voting
                         )  # compute the new happiness
 
                         if analyze_core(coal_new_h, "H", "New_H_subcoal") == True:
@@ -155,11 +167,11 @@ def stability_of_coalitions(coal, voting_df, results):
 
 
 def find_stable_coalitions_by_compromising(
-    max_coal, voting_df, happiness_level, results
+    max_coal, voting_df, happiness_level, results, voting="plurality"
 ):
 
     win = results.winner
-    voting_df["H"] = happiness_level._all_happiness_level
+    voting_df["H"] = happiness_level
     others = voting_df[voting_df[0] != win]
     # Creating Dissimilarity Matrix
     rankings = np.array(others.T)
@@ -216,7 +228,7 @@ def find_stable_coalitions_by_compromising(
                                 man.append(pref)
 
                             coal_new_h, new_result = find_new_happiness(
-                                man, coalition, voting_df
+                                man, coalition, voting_df, voting
                             )  # compute the new happiness
 
                             coalition = coalition.iloc[:, :-1]
@@ -229,7 +241,7 @@ def find_stable_coalitions_by_compromising(
                                 )
                                 print(f"is it stable?")
                                 stable, subcoals = stability_of_coalitions(
-                                    coal_new_h, voting_df, results
+                                    coal_new_h, voting_df, results, voting
                                 )
                                 print(stable)
 
