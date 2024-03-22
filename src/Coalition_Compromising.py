@@ -9,6 +9,21 @@ from src import utils
 from src.outcomes import plurality_outcome
 from src.outcomes import borda_outcome
 from src.happiness_level import HappinessLevel
+import functools
+import pickle
+
+
+def memoize(func):
+    cache = {}
+
+    @functools.wraps(func)
+    def memoized_func(*args):
+        hash_value = hashlib.sha1(pickle.dumps(args)).hexdigest()
+        if hash_value not in cache:
+            cache[hash_value] = func(*args)
+        return cache[hash_value]
+
+    return memoized_func
 
 
 def get_df_hash(df):
@@ -21,6 +36,38 @@ def remove_elements_above_or_equal_index(lst, index):
         return lst
 
     return lst[:index]
+
+
+@memoize
+def compromise(new_poss_coal, results):
+    better_op = []
+
+    for index, row in new_poss_coal.iterrows():
+        pref = list(row.iloc[0:-4])
+        ind = pref.index(results.winner)
+        candidates = set(
+            remove_elements_above_or_equal_index(pref, ind)
+        )  # find the candidates above the winner
+        better_op.append(candidates)
+
+    if len(better_op) > 1:  # if the coalition is bigg than 1
+        intersection = better_op[1].copy()
+        for el in better_op:
+            intersection = set.intersection(el, intersection)
+
+        if len(intersection) > 0:
+
+            for alt in intersection:  # try the alternatives in the intersection
+
+                man = []  # initialize the list with the voters manipulations
+
+                for index, row in new_poss_coal.iterrows():
+                    pref = list(row.iloc[0:-4])
+                    ind = pref.index(alt)
+                    pref.pop(ind)
+                    pref.insert(0, alt)
+                    man.append(pref)
+    return man
 
 
 def find_new_happiness(
@@ -112,50 +159,18 @@ def stability_of_coalitions(coal, voting_df, results, voting):
         for el in combinations_list:
             indice = pd.Index(el)
             new_poss_coal = coal.loc[indice]
-            better_op = []
+            man = compromise(new_poss_coal, results)
+            coal_new_h, new_result = find_new_happiness2(
+                man, new_poss_coal.iloc[:, :-1], voting_df, voting
+            )  # compute the new happiness
 
-            for index, row in new_poss_coal.iterrows():
-                pref = list(row.iloc[0:-4])
-                ind = pref.index(results.winner)
-                candidates = set(
-                    remove_elements_above_or_equal_index(pref, ind)
-                )  # find the candidates above the winner
-                better_op.append(candidates)
+            if analyze_core(coal_new_h, "H", "New_H_subcoal") == True:
 
-            if len(better_op) > 1:  # if the coalition is bigg than 1
-                intersection = better_op[1].copy()
-                for el in better_op:
-                    intersection = set.intersection(el, intersection)
+                is_stable = pd.concat([coal_new_h, new_poss_coal["New_H"]], axis=1)
 
-                if len(intersection) > 0:
-
-                    for alt in intersection:  # try the alternatives in the intersection
-
-                        man = []  # initialize the list with the voters manipulations
-
-                        for index, row in new_poss_coal.iterrows():
-                            pref = list(row.iloc[0:-4])
-                            ind = pref.index(alt)
-                            pref.pop(ind)
-                            pref.insert(0, alt)
-                            man.append(pref)
-
-                        coal_new_h, new_result = find_new_happiness2(
-                            man, new_poss_coal.iloc[:, :-1], voting_df, voting
-                        )  # compute the new happiness
-
-                        if analyze_core(coal_new_h, "H", "New_H_subcoal") == True:
-
-                            is_stable = pd.concat(
-                                [coal_new_h, new_poss_coal["New_H"]], axis=1
-                            )
-
-                            if (
-                                analyze_core(is_stable, "New_H", "New_H_subcoal")
-                                == True
-                            ):
-                                stable = False
-                                subcoalitions.append(is_stable)
+                if analyze_core(is_stable, "New_H", "New_H_subcoal") == True:
+                    stable = False
+                    subcoalitions.append(is_stable)
 
         combinations_list = []
         r += 1
@@ -260,7 +275,7 @@ def find_stable_coalitions_by_compromising(
                                                 columns={"New_H_subcoal": "New_H"}
                                             )
                                             stable2, sb2 = stability_of_coalitions(
-                                                sb, voting_df, results
+                                                sb, voting_df, results, voting
                                             )
                                             if stable2 == True:
 
