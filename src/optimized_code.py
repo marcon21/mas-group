@@ -1,6 +1,6 @@
 import numpy as np
 import math
-from typing import Callable
+from typing import Callable, Tuple, List
 from itertools import permutations
 from collections import Counter
 from joblib import Parallel, delayed
@@ -66,24 +66,12 @@ def happiness_level_total(preferences: np.ndarray, outcome: int) -> float:
     return hap
 
 
+
 def compute_voter_risk(preferences: np.ndarray, result: int, initial_happinesses: np.ndarray, i: int, schema_outcome_f: Callable) -> float:
-    """
-    Compute the risk for a specific voter.
-
-    Args:
-        preferences (np.ndarray): The preferences matrix.
-        result (int): The current outcome.
-        initial_happinesses (np.ndarray): The initial happiness levels for all voters.
-        i (int): Index of the voter for whom risk is calculated.
-        schema_outcome_f (Callable): Function to calculate the outcome based on preferences.
-
-    Returns:
-        float: The risk for the specified voter.
-    """
     initial_happiness = initial_happinesses[i]
     vwr_idx = np.flatnonzero(preferences[:, i] == result)
     if vwr_idx.size == 0:
-        return 0  # Voter doesn't prefer the current outcome
+        return 0 
 
     vwr = vwr_idx[0]
     best_happiness = initial_happiness
@@ -103,22 +91,9 @@ def compute_voter_risk(preferences: np.ndarray, result: int, initial_happinesses
     return best_happiness - initial_happiness
 
 def compute_risk(preferences: np.ndarray, schema_outcome_f: Callable) -> float:
-    """
-    Compute the average risk for all voters.
-
-    Args:
-        preferences (np.ndarray): The preferences matrix.
-        schema_outcome_f (Callable): Function to calculate the outcome based on preferences.
-
-    Returns:
-        float: The average risk for all voters.
-    """
     result = schema_outcome_f(preferences)
     initial_happinesses = happiness_level_total(preferences, result)
     num_unhappy_voters = np.count_nonzero(initial_happinesses != 1)
-
-    if num_unhappy_voters == 0:
-        return 0
 
     total_risk = sum(compute_voter_risk(preferences, result, initial_happinesses, voter, schema_outcome_f) 
                     for voter in range(preferences.shape[1]))
@@ -162,53 +137,56 @@ def compute_risk_parallel(preferences: np.ndarray, schema_outcome_f: Callable,co
 
     return total_risk / num_unhappy_voters
 
-def compute_voter_risk_combinations(preferences: np.ndarray, result: int, initial_happinesses: np.ndarray, voter_index: int, schema_outcome_f: Callable):
-    valid_combinations = []
-    initial_happiness = initial_happinesses[voter_index]
-    valid_result_index = np.flatnonzero(preferences[:, voter_index] == result)
-    if valid_result_index.size == 0:
-        return 0, []
-
-    valid_voting_result_index = valid_result_index[0]
+def compute_voter_risk_combinations(preferences: np.ndarray, 
+                                    result: int, 
+                                    initial_happinesses: np.ndarray, 
+                                    i: int, 
+                                    schema_outcome_f: Callable,
+                                    strategies_happiness: pd.DataFrame) -> float:
+    initial_happiness = initial_happinesses[i]
+    vwr_idx = np.flatnonzero(preferences[:, i] == result)
+    
+    if not vwr_idx.size:
+        return 0
+    
+    vwr = vwr_idx[0]
     best_happiness = initial_happiness
-
-    permutations_of_preferences = list(permutations(preferences[:, voter_index]))
-    perm_array = np.array(permutations_of_preferences)
-
-    new_voting = preferences.copy()
-    for perm in perm_array:
-        idx = np.argwhere(perm == result)[0][0]
-        if idx >= valid_voting_result_index:
-            new_voting[:, voter_index] = perm
-            new_result = schema_outcome_f(new_voting)
-            new_happiness = happiness_level(preferences, voter_index, new_result)  
-            if new_happiness > best_happiness:
-                valid_combinations.append(perm)
-                best_happiness = new_happiness
-
-    return best_happiness - initial_happiness, valid_combinations
-
-def compute_risk_combinations(preferences: np.ndarray, schema_outcome_f: Callable):
-    result = schema_outcome_f(preferences)
-    valid_combinations_per_voter = [[] for _ in range(preferences.shape[1])]
-    total_risk = 0
-    initial_happinesses = happiness_level_total(preferences, result)
-    final_happinesses = initial_happinesses.copy()
-    num_unhappy_voters = np.count_nonzero(initial_happinesses != 1)
-
-    if num_unhappy_voters == 0:
-        return 0, valid_combinations_per_voter, final_happinesses
-
-    for voter_index in range(preferences.shape[1]): 
-        result_tuple = compute_voter_risk_combinations(preferences, result, initial_happinesses, voter_index, schema_outcome_f)
-        if len(result_tuple) == 2:
-            risk, valid_combinations = result_tuple
-            new_happiness = initial_happinesses[voter_index]
-        else:
-            risk, valid_combinations, new_happiness = result_tuple
-
-        total_risk += risk.sum()
-        valid_combinations_per_voter[voter_index] = valid_combinations
-        final_happinesses[voter_index] = new_happiness
+    
+    for perm in permutations(preferences[:, i]):
+        idx = np.where(perm == result)[0][0]
         
-    return total_risk / num_unhappy_voters, valid_combinations_per_voter, final_happinesses
+        if idx >= vwr:
+            new_voting = preferences.copy()
+            new_voting[:, i] = perm
+            new_result = schema_outcome_f(new_voting)
+            new_happiness = happiness_level(preferences, i, new_result)
+            
+            if new_happiness > initial_happiness:
+                strategies_happiness.loc[len(strategies_happiness)] = [i, perm, new_result, new_happiness, initial_happiness, 0]  # Skip unnecessary computation of new_overall_happiness
+                
+            if new_happiness == 1:
+                return 1 - initial_happiness
+            
+            best_happiness = max(best_happiness, new_happiness)
+    
+    return best_happiness - initial_happiness
+
+def compute_risk_combinations(preferences: np.ndarray, 
+                              schema_outcome_f: Callable) -> Tuple[float, pd.DataFrame]:
+    
+    result = schema_outcome_f(preferences)
+    initial_happinesses = happiness_level_total(preferences, result)
+    initial_overall_happiness = initial_happinesses.sum()
+    num_unhappy_voters = np.count_nonzero(initial_happinesses != 1)
+    strategies_happiness = pd.DataFrame(columns=["voter", "combination", "new_result", "strategic_happiness", "old_happiness", "overall_happiness"])
+
+    total_risk = 0
+    
+    for voter in range(preferences.shape[1]):
+        risk= compute_voter_risk_combinations(preferences, result, initial_happinesses, voter, schema_outcome_f,strategies_happiness) 
+        total_risk += risk
+    
+    if total_risk == 0:
+        return 0, strategies_happiness
+    strategies_happiness["initial overall happiness"] = initial_overall_happiness
+    return total_risk / num_unhappy_voters, strategies_happiness
