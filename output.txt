@@ -1,0 +1,1005 @@
+(True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+11  R  O  L  H  D  N  I  J  Q  B  ...  S  C  T  A  M  0.000000      0   
+24  H  P  I  R  Q  T  J  N  A  D  ...  O  C  M  G  L  0.234424      0   
+
+                                         manipulation New_H_subcoal     New_H  
+11  [K, R, O, L, H, D, N, I, J, Q, B, G, E, P, F, ...      0.367697  0.331208  
+24  [K, H, P, I, R, Q, T, J, N, A, D, B, E, S, F, ...      0.430283  0.400249  
+
+[2 rows x 25 columns], Winner: S
+{'A': 1, 'B': 1, 'C': 0, 'D': 2, 'E': 1, 'F': 3, 'G': 1, 'H': 1, 'I': 0, 'J': 0, 'K': 2, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 1, 'Q': 2, 'R': 2, 'S': 5, 'T': 1})(True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+11  R  O  L  H  D  N  I  J  Q  B  ...  S  C  T  A  M  0.000000      0   
+24  H  P  I  R  Q  T  J  N  A  D  ...  O  C  M  G  L  0.234424      0   
+
+                                         manipulation New_H_subcoal     New_H  
+11  [D, R, O, L, H, N, I, J, Q, B, G, E, P, F, K, ...      0.668792  0.331208  
+24  [D, H, P, I, R, Q, T, J, N, A, B, E, K, S, F, ...      0.513659  0.400249  
+
+[2 rows x 25 columns], Winner: S
+{'A': 1, 'B': 1, 'C': 0, 'D': 2, 'E': 1, 'F': 3, 'G': 1, 'H': 1, 'I': 0, 'J': 0, 'K': 2, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 1, 'Q': 2, 'R': 2, 'S': 5, 'T': 1})(True,     0  1  2  3  4  5  6  7  8  9  ... 14 15 16 17 18 19         H gruppo  \
+11  R  O  L  H  D  N  I  J  Q  B  ...  K  S  C  T  A  M  0.000000      0   
+21  G  P  S  T  H  Q  J  M  A  B  ...  D  K  C  I  E  O  0.569717      0   
+24  H  P  I  R  Q  T  J  N  A  D  ...  F  O  C  M  G  L  0.234424      0   
+
+                                         manipulation     New_H  
+11  [H, R, O, L, D, N, I, J, Q, B, G, E, P, F, K, ...  0.711624  
+21  [H, G, P, S, T, Q, J, M, A, B, L, N, R, F, D, ...  0.668792  
+24  [H, P, I, R, Q, T, J, N, A, D, B, E, K, S, F, ...  1.000000  
+
+[3 rows x 24 columns], Winner: H
+{'A': 1, 'B': 1, 'C': 0, 'D': 2, 'E': 1, 'F': 3, 'G': 1, 'H': 4, 'I': 0, 'J': 0, 'K': 2, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 1, 'Q': 2, 'R': 2, 'S': 2, 'T': 1})(True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+11  R  O  L  H  D  N  I  J  Q  B  ...  S  C  T  A  M  0.000000      0   
+21  G  P  S  T  H  Q  J  M  A  B  ...  K  C  I  E  O  0.569717      0   
+
+                                         manipulation New_H_subcoal     New_H  
+11  [H, R, O, L, D, N, I, J, Q, B, G, E, P, F, K, ...      0.711624  0.541255  
+21  [H, G, P, S, T, Q, J, M, A, B, L, N, R, F, D, ...      0.668792  0.632303  
+
+[2 rows x 25 columns], Winner: Q
+{'A': 1, 'B': 1, 'C': 0, 'D': 2, 'E': 1, 'F': 3, 'G': 1, 'H': 1, 'I': 0, 'J': 0, 'K': 2, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 1, 'Q': 5, 'R': 2, 'S': 2, 'T': 1})(True,     0  1  2  3  4  5  6  7  8  9  ... 14 15 16 17 18 19         H gruppo  \
+28  Q  H  F  D  K  R  L  M  N  T  ...  J  E  C  B  A  G  0.569717      1   
+29  B  H  J  D  K  C  G  S  R  O  ...  Q  M  A  N  E  L  0.331208      1   
+
+                                         manipulation     New_H  
+28  [K, Q, H, F, D, R, L, M, N, T, I, O, S, P, J, ...  0.668792  
+29  [K, B, H, J, D, C, G, S, R, O, I, F, P, T, Q, ...  0.668792  
+
+[2 rows x 24 columns], Winner: K
+{'A': 1, 'B': 0, 'C': 0, 'D': 2, 'E': 1, 'F': 3, 'G': 2, 'H': 2, 'I': 0, 'J': 0, 'K': 4, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 1, 'Q': 1, 'R': 3, 'S': 2, 'T': 1})(True,     0  1  2  3  4  5  6  7  8  9  ... 14 15 16 17 18 19         H gruppo  \
+28  Q  H  F  D  K  R  L  M  N  T  ...  J  E  C  B  A  G  0.569717      1   
+29  B  H  J  D  K  C  G  S  R  O  ...  Q  M  A  N  E  L  0.331208      1   
+
+                                         manipulation     New_H  
+28  [F, Q, H, D, K, R, L, M, N, T, I, O, S, P, J, ...  0.765576  
+29  [F, B, H, J, D, K, C, G, S, R, O, I, P, T, Q, ...  0.458745  
+
+[2 rows x 24 columns], Winner: F
+{'A': 1, 'B': 0, 'C': 0, 'D': 2, 'E': 1, 'F': 5, 'G': 2, 'H': 2, 'I': 0, 'J': 0, 'K': 2, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 1, 'Q': 1, 'R': 3, 'S': 2, 'T': 1})(True,     0  1  2  3  4  5  6  7  8  9  ... 14 15 16 17 18 19         H gruppo  \
+28  Q  H  F  D  K  R  L  M  N  T  ...  J  E  C  B  A  G  0.569717      1   
+29  B  H  J  D  K  C  G  S  R  O  ...  Q  M  A  N  E  L  0.331208      1   
+
+                                         manipulation     New_H  
+28  [D, Q, H, F, K, R, L, M, N, T, I, O, S, P, J, ...  0.711624  
+29  [D, B, H, J, K, C, G, S, R, O, I, F, P, T, Q, ...  0.711624  
+
+[2 rows x 24 columns], Winner: D
+{'A': 1, 'B': 0, 'C': 0, 'D': 4, 'E': 1, 'F': 3, 'G': 2, 'H': 2, 'I': 0, 'J': 0, 'K': 2, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 1, 'Q': 1, 'R': 3, 'S': 2, 'T': 1})(True,     0  1  2  3  4  5  6  7  8  9  ... 14 15 16 17 18 19         H gruppo  \
+28  Q  H  F  D  K  R  L  M  N  T  ...  J  E  C  B  A  G  0.569717      1   
+29  B  H  J  D  K  C  G  S  R  O  ...  Q  M  A  N  E  L  0.331208      1   
+
+                                         manipulation     New_H  
+28  [H, Q, F, D, K, R, L, M, N, T, I, O, S, P, J, ...  0.842877  
+29  [H, B, J, D, K, C, G, S, R, O, I, F, P, T, Q, ...  0.842877  
+
+[2 rows x 24 columns], Winner: H
+{'A': 1, 'B': 0, 'C': 0, 'D': 2, 'E': 1, 'F': 3, 'G': 2, 'H': 4, 'I': 0, 'J': 0, 'K': 2, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 1, 'Q': 1, 'R': 3, 'S': 2, 'T': 1})(True,     0  1  2  3  4  5  6  7  8  9  ... 14 15 16 17 18 19         H gruppo  \
+28  Q  H  F  D  K  R  L  M  N  T  ...  J  E  C  B  A  G  0.569717      1   
+29  B  H  J  D  K  C  G  S  R  O  ...  Q  M  A  N  E  L  0.331208      1   
+
+                                         manipulation     New_H  
+28  [R, Q, H, F, D, K, L, M, N, T, I, O, S, P, J, ...  0.632303  
+29  [R, B, H, J, D, K, C, G, S, O, I, F, P, T, Q, ...  0.541255  
+
+[2 rows x 24 columns], Winner: R
+{'A': 1, 'B': 0, 'C': 0, 'D': 2, 'E': 1, 'F': 3, 'G': 2, 'H': 2, 'I': 0, 'J': 0, 'K': 2, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 1, 'Q': 1, 'R': 5, 'S': 2, 'T': 1})(True,     0  1  2  3  4  5  6  7  8  9  ... 14 15 16 17 18 19         H gruppo  \
+13  Q  P  T  C  E  L  G  I  A  R  ...  D  S  H  F  N  J  0.400249      6   
+15  D  R  S  K  E  F  I  H  J  P  ...  A  L  O  C  G  M  0.000000      6   
+
+                                         manipulation     New_H  
+13  [K, Q, P, T, C, E, L, G, I, A, R, O, B, M, D, ...  0.458745  
+15  [K, D, R, S, E, F, I, H, J, P, Q, T, B, N, A, ...  0.711624  
+
+[2 rows x 24 columns], Winner: K
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 2, 'H': 2, 'I': 0, 'J': 0, 'K': 4, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 1, 'Q': 1, 'R': 3, 'S': 2, 'T': 1})(True,     0  1  2  3  4  5  6  7  8  9  ... 14 15 16 17 18 19         H gruppo  \
+13  Q  P  T  C  E  L  G  I  A  R  ...  D  S  H  F  N  J  0.400249      6   
+15  D  R  S  K  E  F  I  H  J  P  ...  A  L  O  C  G  M  0.000000      6   
+
+                                         manipulation     New_H  
+13  [G, Q, P, T, C, E, L, I, A, R, O, K, B, M, D, ...  0.599751  
+15  [G, D, R, S, K, E, F, I, H, J, P, Q, T, B, N, ...  0.157123  
+
+[2 rows x 24 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 4, 'H': 2, 'I': 0, 'J': 0, 'K': 2, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 1, 'Q': 1, 'R': 3, 'S': 2, 'T': 1})(True,     0  1  2  3  4  5  6  7  8  9  ... 14 15 16 17 18 19         H gruppo  \
+13  Q  P  T  C  E  L  G  I  A  R  ...  D  S  H  F  N  J  0.400249      6   
+15  D  R  S  K  E  F  I  H  J  P  ...  A  L  O  C  G  M  0.000000      6   
+
+                                         manipulation     New_H  
+13  [R, Q, P, T, C, E, L, G, I, A, O, K, B, M, D, ...  0.513659  
+15  [R, D, S, K, E, F, I, H, J, P, Q, T, B, N, A, ...  0.842877  
+
+[2 rows x 24 columns], Winner: R
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 2, 'H': 2, 'I': 0, 'J': 0, 'K': 2, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 1, 'Q': 1, 'R': 5, 'S': 2, 'T': 1})(True,     0  1  2  3  4  5  6  7  8  9  ... 14 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  B  A  P  E  I  N  0.513659      7   
+12  P  T  F  R  J  G  L  C  B  M  ...  E  D  N  Q  O  H  0.513659      7   
+
+                                         manipulation     New_H  
+0   [F, S, K, J, R, T, C, G, H, M, Q, D, L, O, B, ...  0.541255  
+12  [F, P, T, R, J, G, L, C, B, M, I, K, A, S, E, ...  0.765576  
+
+[2 rows x 24 columns], Winner: F
+{'A': 1, 'B': 1, 'C': 0, 'D': 2, 'E': 1, 'F': 5, 'G': 2, 'H': 2, 'I': 0, 'J': 0, 'K': 2, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 2, 'R': 3, 'S': 1, 'T': 1})(True,     0  1  2  3  4  5  6  7  8  9  ... 14 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  B  A  P  E  I  N  0.513659      7   
+12  P  T  F  R  J  G  L  C  B  M  ...  E  D  N  Q  O  H  0.513659      7   
+
+                                         manipulation     New_H  
+0   [G, S, K, J, R, T, C, H, F, M, Q, D, L, O, B, ...  0.599751  
+12  [G, P, T, F, R, J, L, C, B, M, I, K, A, S, E, ...  0.632303  
+
+[2 rows x 24 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 2, 'E': 1, 'F': 3, 'G': 4, 'H': 2, 'I': 0, 'J': 0, 'K': 2, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 2, 'R': 3, 'S': 1, 'T': 1})(True,     0  1  2  3  4  5  6  7  8  9  ... 14 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  B  A  P  E  I  N  0.513659      7   
+12  P  T  F  R  J  G  L  C  B  M  ...  E  D  N  Q  O  H  0.513659      7   
+
+                                         manipulation     New_H  
+0   [R, S, K, J, T, C, G, H, F, M, Q, D, L, O, B, ...  0.711624  
+12  [R, P, T, F, J, G, L, C, B, M, I, K, A, S, E, ...  0.711624  
+
+[2 rows x 24 columns], Winner: R
+{'A': 1, 'B': 1, 'C': 0, 'D': 2, 'E': 1, 'F': 3, 'G': 2, 'H': 2, 'I': 0, 'J': 0, 'K': 2, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 2, 'R': 5, 'S': 1, 'T': 1})(True,    0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+0  S  K  J  R  T  C  G  H  F  M  ...  A  P  E  I  N  0.513659      0   
+4  K  C  R  E  T  O  D  F  H  G  ...  L  S  Q  J  I  0.430283      0   
+
+                                        manipulation New_H_subcoal     New_H  
+0  [R, S, K, J, T, C, G, H, F, M, Q, D, L, O, B, ...      0.711624  0.541255  
+4  [R, K, C, E, T, O, D, F, H, G, P, A, M, N, B, ...      0.765576  0.569717  
+
+[2 rows x 25 columns], Winner: F
+{'A': 1, 'B': 1, 'C': 0, 'D': 2, 'E': 1, 'F': 6, 'G': 2, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 2, 'R': 3, 'S': 1, 'T': 1})(True,    0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+0  S  K  J  R  T  C  G  H  F  M  ...  A  P  E  I  N  0.513659      0   
+4  K  C  R  E  T  O  D  F  H  G  ...  L  S  Q  J  I  0.430283      0   
+
+                                        manipulation New_H_subcoal     New_H  
+0  [R, S, K, J, T, C, G, H, F, M, Q, D, L, O, B, ...      0.711624  0.599751  
+4  [R, K, C, E, T, O, D, F, H, G, P, A, M, N, B, ...      0.765576  0.513659  
+
+[2 rows x 25 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 2, 'E': 1, 'F': 3, 'G': 5, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 2, 'R': 3, 'S': 1, 'T': 1})(True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  A  P  E  I  N  0.513659      0   
+12  P  T  F  R  J  G  L  C  B  M  ...  D  N  Q  O  H  0.513659      0   
+
+                                         manipulation New_H_subcoal     New_H  
+0   [R, S, K, J, T, C, G, H, F, M, Q, D, L, O, B, ...      0.711624  0.599751  
+12  [R, P, T, F, J, G, L, C, B, M, I, K, A, S, E, ...      0.711624  0.632303  
+
+[2 rows x 25 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 2, 'E': 1, 'F': 3, 'G': 5, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 2, 'R': 3, 'S': 1, 'T': 1})(True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+4   K  C  R  E  T  O  D  F  H  G  ...  L  S  Q  J  I  0.430283      0   
+12  P  T  F  R  J  G  L  C  B  M  ...  D  N  Q  O  H  0.513659      0   
+
+                                         manipulation New_H_subcoal     New_H  
+4   [F, K, C, R, E, T, O, D, H, G, P, A, M, N, B, ...      0.569717  0.513659  
+12  [F, P, T, R, J, G, L, C, B, M, I, K, A, S, E, ...      0.765576  0.632303  
+
+[2 rows x 25 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 2, 'E': 1, 'F': 3, 'G': 5, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 2, 'R': 3, 'S': 1, 'T': 1})(True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+4   K  C  R  E  T  O  D  F  H  G  ...  L  S  Q  J  I  0.430283      0   
+12  P  T  F  R  J  G  L  C  B  M  ...  D  N  Q  O  H  0.513659      0   
+
+                                         manipulation New_H_subcoal     New_H  
+4   [R, K, C, E, T, O, D, F, H, G, P, A, M, N, B, ...      0.765576  0.513659  
+12  [R, P, T, F, J, G, L, C, B, M, I, K, A, S, E, ...      0.711624  0.632303  
+
+[2 rows x 25 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 2, 'E': 1, 'F': 3, 'G': 5, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 2, 'R': 3, 'S': 1, 'T': 1})(True,     0  1  2  3  4  5  6  7  8  9  ... 14 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  B  A  P  E  I  N  0.513659      0   
+4   K  C  R  E  T  O  D  F  H  G  ...  B  L  S  Q  J  I  0.430283      0   
+12  P  T  F  R  J  G  L  C  B  M  ...  E  D  N  Q  O  H  0.513659      0   
+
+                                         manipulation     New_H  
+0   [R, S, K, J, T, C, G, H, F, M, Q, D, L, O, B, ...  0.711624  
+4   [R, K, C, E, T, O, D, F, H, G, P, A, M, N, B, ...  0.765576  
+12  [R, P, T, F, J, G, L, C, B, M, I, K, A, S, E, ...  0.711624  
+
+[3 rows x 24 columns], Winner: R
+{'A': 1, 'B': 1, 'C': 0, 'D': 2, 'E': 1, 'F': 3, 'G': 2, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 2, 'R': 6, 'S': 1, 'T': 1})(True,    0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+0  S  K  J  R  T  C  G  H  F  M  ...  A  P  E  I  N  0.513659      0   
+4  K  C  R  E  T  O  D  F  H  G  ...  L  S  Q  J  I  0.430283      0   
+
+                                        manipulation New_H_subcoal     New_H  
+0  [R, S, K, J, T, C, G, H, F, M, Q, D, L, O, B, ...      0.711624  0.668792  
+4  [R, K, C, E, T, O, D, F, H, G, P, A, M, N, B, ...      0.765576  0.668792  
+
+[2 rows x 25 columns], Winner: T
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 2, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 6})(True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  A  P  E  I  N  0.513659      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  L  O  C  G  M  0.000000      0   
+
+                                         manipulation New_H_subcoal     New_H  
+0   [K, S, J, R, T, C, G, H, F, M, Q, D, L, O, B, ...      0.842877  0.668792  
+15  [K, D, R, S, E, F, I, H, J, P, Q, T, B, N, A, ...      0.711624  0.458745  
+
+[2 rows x 25 columns], Winner: T
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 2, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 6})(True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  A  P  E  I  N  0.513659      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  L  O  C  G  M  0.000000      0   
+
+                                         manipulation New_H_subcoal     New_H  
+0   [R, S, K, J, T, C, G, H, F, M, Q, D, L, O, B, ...      0.711624  0.668792  
+15  [R, D, S, K, E, F, I, H, J, P, Q, T, B, N, A, ...      0.842877  0.458745  
+
+[2 rows x 25 columns], Winner: T
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 2, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 6})(True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+4   K  C  R  E  T  O  D  F  H  G  ...  L  S  Q  J  I  0.430283      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  L  O  C  G  M  0.000000      0   
+
+                                         manipulation New_H_subcoal     New_H  
+4   [R, K, C, E, T, O, D, F, H, G, P, A, M, N, B, ...      0.765576  0.668792  
+15  [R, D, S, K, E, F, I, H, J, P, Q, T, B, N, A, ...      0.842877  0.458745  
+
+[2 rows x 25 columns], Winner: T
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 2, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 6})    0  1  2  3  4  5  6  7  8  9  ... 14 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  B  A  P  E  I  N  0.513659      0   
+4   K  C  R  E  T  O  D  F  H  G  ...  B  L  S  Q  J  I  0.430283      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  A  L  O  C  G  M  0.000000      0   
+
+                                         manipulation     New_H  
+0   [K, S, J, R, T, C, G, H, F, M, Q, D, L, O, B, ...  0.842877  
+4   [K, C, R, E, T, O, D, F, H, G, P, A, M, N, B, ...  1.000000  
+15  [K, D, R, S, E, F, I, H, J, P, Q, T, B, N, A, ...  0.711624  
+
+[3 rows x 24 columns](True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  A  P  E  I  N  0.513659      0   
+4   K  C  R  E  T  O  D  F  H  G  ...  L  S  Q  J  I  0.430283      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  L  O  C  G  M  0.000000      0   
+
+                                         manipulation New_H_subcoal     New_H  
+0   [K, S, J, R, T, C, G, H, F, M, Q, D, L, O, B, ...      0.842877  0.668792  
+4   [K, C, R, E, T, O, D, F, H, G, P, A, M, N, B, ...      1.000000  0.668792  
+15  [K, D, R, S, E, F, I, H, J, P, Q, T, B, N, A, ...      0.711624  0.458745  
+
+[3 rows x 25 columns], Winner: T
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 2, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 6})    0  1  2  3  4  5  6  7  8  9  ... 14 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  B  A  P  E  I  N  0.513659      0   
+4   K  C  R  E  T  O  D  F  H  G  ...  B  L  S  Q  J  I  0.430283      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  A  L  O  C  G  M  0.000000      0   
+
+                                         manipulation     New_H  
+0   [R, S, K, J, T, C, G, H, F, M, Q, D, L, O, B, ...  0.711624  
+4   [R, K, C, E, T, O, D, F, H, G, P, A, M, N, B, ...  0.765576  
+15  [R, D, S, K, E, F, I, H, J, P, Q, T, B, N, A, ...  0.842877  
+
+[3 rows x 24 columns](True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  A  P  E  I  N  0.513659      0   
+4   K  C  R  E  T  O  D  F  H  G  ...  L  S  Q  J  I  0.430283      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  L  O  C  G  M  0.000000      0   
+
+                                         manipulation New_H_subcoal     New_H  
+0   [R, S, K, J, T, C, G, H, F, M, Q, D, L, O, B, ...      0.711624  0.668792  
+4   [R, K, C, E, T, O, D, F, H, G, P, A, M, N, B, ...      0.765576  0.668792  
+15  [R, D, S, K, E, F, I, H, J, P, Q, T, B, N, A, ...      0.842877  0.458745  
+
+[3 rows x 25 columns], Winner: T
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 2, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 6})(True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  A  P  E  I  N  0.513659      0   
+12  P  T  F  R  J  G  L  C  B  M  ...  D  N  Q  O  H  0.513659      0   
+
+                                         manipulation New_H_subcoal     New_H  
+0   [R, S, K, J, T, C, G, H, F, M, Q, D, L, O, B, ...      0.711624  0.632303  
+12  [R, P, T, F, J, G, L, C, B, M, I, K, A, S, E, ...      0.711624  0.569717  
+
+[2 rows x 25 columns], Winner: C
+{'A': 1, 'B': 1, 'C': 5, 'D': 1, 'E': 1, 'F': 3, 'G': 2, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1})(True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  A  P  E  I  N  0.513659      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  L  O  C  G  M  0.000000      0   
+
+                                         manipulation New_H_subcoal     New_H  
+0   [K, S, J, R, T, C, G, H, F, M, Q, D, L, O, B, ...      0.842877  0.632303  
+15  [K, D, R, S, E, F, I, H, J, P, Q, T, B, N, A, ...      0.711624  0.234424  
+
+[2 rows x 25 columns], Winner: C
+{'A': 1, 'B': 1, 'C': 5, 'D': 1, 'E': 1, 'F': 3, 'G': 2, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1})(True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  A  P  E  I  N  0.513659      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  L  O  C  G  M  0.000000      0   
+
+                                         manipulation New_H_subcoal     New_H  
+0   [R, S, K, J, T, C, G, H, F, M, Q, D, L, O, B, ...      0.711624  0.632303  
+15  [R, D, S, K, E, F, I, H, J, P, Q, T, B, N, A, ...      0.842877  0.234424  
+
+[2 rows x 25 columns], Winner: C
+{'A': 1, 'B': 1, 'C': 5, 'D': 1, 'E': 1, 'F': 3, 'G': 2, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1})(True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+12  P  T  F  R  J  G  L  C  B  M  ...  D  N  Q  O  H  0.513659      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  L  O  C  G  M  0.000000      0   
+
+                                         manipulation New_H_subcoal     New_H  
+12  [F, P, T, R, J, G, L, C, B, M, I, K, A, S, E, ...      0.765576  0.569717  
+15  [F, D, R, S, K, E, I, H, J, P, Q, T, B, N, A, ...      0.632303  0.234424  
+
+[2 rows x 25 columns], Winner: C
+{'A': 1, 'B': 1, 'C': 5, 'D': 1, 'E': 1, 'F': 3, 'G': 2, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1})(True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+12  P  T  F  R  J  G  L  C  B  M  ...  D  N  Q  O  H  0.513659      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  L  O  C  G  M  0.000000      0   
+
+                                         manipulation New_H_subcoal     New_H  
+12  [R, P, T, F, J, G, L, C, B, M, I, K, A, S, E, ...      0.711624  0.569717  
+15  [R, D, S, K, E, F, I, H, J, P, Q, T, B, N, A, ...      0.842877  0.234424  
+
+[2 rows x 25 columns], Winner: C
+{'A': 1, 'B': 1, 'C': 5, 'D': 1, 'E': 1, 'F': 3, 'G': 2, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1})    0  1  2  3  4  5  6  7  8  9  ... 14 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  B  A  P  E  I  N  0.513659      0   
+4   K  C  R  E  T  O  D  F  H  G  ...  B  L  S  Q  J  I  0.430283      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  A  L  O  C  G  M  0.000000      0   
+
+                                         manipulation     New_H  
+0   [K, S, J, R, T, C, G, H, F, M, Q, D, L, O, B, ...  0.842877  
+4   [K, C, R, E, T, O, D, F, H, G, P, A, M, N, B, ...  1.000000  
+15  [K, D, R, S, E, F, I, H, J, P, Q, T, B, N, A, ...  0.711624  
+
+[3 rows x 24 columns](True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  A  P  E  I  N  0.513659      0   
+4   K  C  R  E  T  O  D  F  H  G  ...  L  S  Q  J  I  0.430283      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  L  O  C  G  M  0.000000      0   
+
+                                         manipulation New_H_subcoal     New_H  
+0   [K, S, J, R, T, C, G, H, F, M, Q, D, L, O, B, ...      0.842877  0.632303  
+4   [K, C, R, E, T, O, D, F, H, G, P, A, M, N, B, ...      1.000000  0.842877  
+15  [K, D, R, S, E, F, I, H, J, P, Q, T, B, N, A, ...      0.711624  0.234424  
+
+[3 rows x 25 columns], Winner: C
+{'A': 1, 'B': 1, 'C': 5, 'D': 1, 'E': 1, 'F': 3, 'G': 2, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1})    0  1  2  3  4  5  6  7  8  9  ... 14 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  B  A  P  E  I  N  0.513659      0   
+12  P  T  F  R  J  G  L  C  B  M  ...  E  D  N  Q  O  H  0.513659      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  A  L  O  C  G  M  0.000000      0   
+
+                                         manipulation     New_H  
+0   [R, S, K, J, T, C, G, H, F, M, Q, D, L, O, B, ...  0.711624  
+12  [R, P, T, F, J, G, L, C, B, M, I, K, A, S, E, ...  0.711624  
+15  [R, D, S, K, E, F, I, H, J, P, Q, T, B, N, A, ...  0.842877  
+
+[3 rows x 24 columns](True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  A  P  E  I  N  0.513659      0   
+12  P  T  F  R  J  G  L  C  B  M  ...  D  N  Q  O  H  0.513659      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  L  O  C  G  M  0.000000      0   
+
+                                         manipulation New_H_subcoal     New_H  
+0   [R, S, K, J, T, C, G, H, F, M, Q, D, L, O, B, ...      0.711624  0.632303  
+12  [R, P, T, F, J, G, L, C, B, M, I, K, A, S, E, ...      0.711624  0.569717  
+15  [R, D, S, K, E, F, I, H, J, P, Q, T, B, N, A, ...      0.842877  0.234424  
+
+[3 rows x 25 columns], Winner: C
+{'A': 1, 'B': 1, 'C': 5, 'D': 1, 'E': 1, 'F': 3, 'G': 2, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1})(False,     0  1  2  3  4  5  6  7  8  9  ... 14 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  B  A  P  E  I  N  0.513659      0   
+4   K  C  R  E  T  O  D  F  H  G  ...  B  L  S  Q  J  I  0.430283      0   
+12  P  T  F  R  J  G  L  C  B  M  ...  E  D  N  Q  O  H  0.513659      0   
+13  Q  P  T  C  E  L  G  I  A  R  ...  D  S  H  F  N  J  0.400249      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  A  L  O  C  G  M  0.000000      0   
+
+                                         manipulation     New_H  
+0   [C, S, K, J, R, T, G, H, F, M, Q, D, L, O, B, ...  0.632303  
+4   [C, K, R, E, T, O, D, F, H, G, P, A, M, N, B, ...  0.842877  
+12  [C, P, T, F, R, J, G, L, B, M, I, K, A, S, E, ...  0.569717  
+13  [C, Q, P, T, E, L, G, I, A, R, O, K, B, M, D, ...  0.711624  
+15  [C, D, R, S, K, E, F, I, H, J, P, Q, T, B, N, ...  0.234424  
+
+[5 rows x 24 columns], Winner: C
+{'A': 1, 'B': 1, 'C': 5, 'D': 1, 'E': 1, 'F': 3, 'G': 2, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1}, [])(True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  A  P  E  I  N  0.513659      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  L  O  C  G  M  0.000000      0   
+
+                                         manipulation New_H_subcoal     New_H  
+0   [K, S, J, R, T, C, G, H, F, M, Q, D, L, O, B, ...      0.842877  0.668792  
+15  [K, D, R, S, E, F, I, H, J, P, Q, T, B, N, A, ...      0.711624  0.458745  
+
+[2 rows x 25 columns], Winner: C
+{'A': 1, 'B': 1, 'C': 5, 'D': 1, 'E': 1, 'F': 3, 'G': 2, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1})(True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  A  P  E  I  N  0.513659      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  L  O  C  G  M  0.000000      0   
+
+                                         manipulation New_H_subcoal     New_H  
+0   [R, S, K, J, T, C, G, H, F, M, Q, D, L, O, B, ...      0.711624  0.668792  
+15  [R, D, S, K, E, F, I, H, J, P, Q, T, B, N, A, ...      0.842877  0.458745  
+
+[2 rows x 25 columns], Winner: C
+{'A': 1, 'B': 1, 'C': 5, 'D': 1, 'E': 1, 'F': 3, 'G': 2, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1})(True,    0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+0  S  K  J  R  T  C  G  H  F  M  ...  A  P  E  I  N  0.513659      0   
+4  K  C  R  E  T  O  D  F  H  G  ...  L  S  Q  J  I  0.430283      0   
+
+                                        manipulation New_H_subcoal     New_H  
+0  [R, S, K, J, T, C, G, H, F, M, Q, D, L, O, B, ...      0.711624  0.599751  
+4  [R, K, C, E, T, O, D, F, H, G, P, A, M, N, B, ...      0.765576  0.513659  
+
+[2 rows x 25 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 7, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1})(True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  A  P  E  I  N  0.513659      0   
+12  P  T  F  R  J  G  L  C  B  M  ...  D  N  Q  O  H  0.513659      0   
+
+                                         manipulation New_H_subcoal     New_H  
+0   [R, S, K, J, T, C, G, H, F, M, Q, D, L, O, B, ...      0.711624  0.599751  
+12  [R, P, T, F, J, G, L, C, B, M, I, K, A, S, E, ...      0.711624  0.632303  
+
+[2 rows x 25 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 7, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1})(True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  A  P  E  I  N  0.513659      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  L  O  C  G  M  0.000000      0   
+
+                                         manipulation New_H_subcoal     New_H  
+0   [K, S, J, R, T, C, G, H, F, M, Q, D, L, O, B, ...      0.842877  0.599751  
+15  [K, D, R, S, E, F, I, H, J, P, Q, T, B, N, A, ...      0.711624  0.157123  
+
+[2 rows x 25 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 7, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1})(True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  A  P  E  I  N  0.513659      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  L  O  C  G  M  0.000000      0   
+
+                                         manipulation New_H_subcoal     New_H  
+0   [R, S, K, J, T, C, G, H, F, M, Q, D, L, O, B, ...      0.711624  0.599751  
+15  [R, D, S, K, E, F, I, H, J, P, Q, T, B, N, A, ...      0.842877  0.157123  
+
+[2 rows x 25 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 7, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1})(True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+4   K  C  R  E  T  O  D  F  H  G  ...  L  S  Q  J  I  0.430283      0   
+12  P  T  F  R  J  G  L  C  B  M  ...  D  N  Q  O  H  0.513659      0   
+
+                                         manipulation New_H_subcoal     New_H  
+4   [F, K, C, R, E, T, O, D, H, G, P, A, M, N, B, ...      0.569717  0.513659  
+12  [F, P, T, R, J, G, L, C, B, M, I, K, A, S, E, ...      0.765576  0.632303  
+
+[2 rows x 25 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 7, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1})(True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+4   K  C  R  E  T  O  D  F  H  G  ...  L  S  Q  J  I  0.430283      0   
+12  P  T  F  R  J  G  L  C  B  M  ...  D  N  Q  O  H  0.513659      0   
+
+                                         manipulation New_H_subcoal     New_H  
+4   [R, K, C, E, T, O, D, F, H, G, P, A, M, N, B, ...      0.765576  0.513659  
+12  [R, P, T, F, J, G, L, C, B, M, I, K, A, S, E, ...      0.711624  0.632303  
+
+[2 rows x 25 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 7, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1})(True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+4   K  C  R  E  T  O  D  F  H  G  ...  L  S  Q  J  I  0.430283      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  L  O  C  G  M  0.000000      0   
+
+                                         manipulation New_H_subcoal     New_H  
+4   [F, K, C, R, E, T, O, D, H, G, P, A, M, N, B, ...      0.569717  0.513659  
+15  [F, D, R, S, K, E, I, H, J, P, Q, T, B, N, A, ...      0.632303  0.157123  
+
+[2 rows x 25 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 7, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1})(True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+4   K  C  R  E  T  O  D  F  H  G  ...  L  S  Q  J  I  0.430283      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  L  O  C  G  M  0.000000      0   
+
+                                         manipulation New_H_subcoal     New_H  
+4   [H, K, C, R, E, T, O, D, F, G, P, A, M, N, B, ...      0.541255  0.513659  
+15  [H, D, R, S, K, E, F, I, J, P, Q, T, B, N, A, ...      0.569717  0.157123  
+
+[2 rows x 25 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 7, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1})(True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+4   K  C  R  E  T  O  D  F  H  G  ...  L  S  Q  J  I  0.430283      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  L  O  C  G  M  0.000000      0   
+
+                                         manipulation New_H_subcoal     New_H  
+4   [R, K, C, E, T, O, D, F, H, G, P, A, M, N, B, ...      0.765576  0.513659  
+15  [R, D, S, K, E, F, I, H, J, P, Q, T, B, N, A, ...      0.842877  0.157123  
+
+[2 rows x 25 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 7, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1})(True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+12  P  T  F  R  J  G  L  C  B  M  ...  D  N  Q  O  H  0.513659      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  L  O  C  G  M  0.000000      0   
+
+                                         manipulation New_H_subcoal     New_H  
+12  [F, P, T, R, J, G, L, C, B, M, I, K, A, S, E, ...      0.765576  0.632303  
+15  [F, D, R, S, K, E, I, H, J, P, Q, T, B, N, A, ...      0.632303  0.157123  
+
+[2 rows x 25 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 7, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1})(True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+12  P  T  F  R  J  G  L  C  B  M  ...  D  N  Q  O  H  0.513659      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  L  O  C  G  M  0.000000      0   
+
+                                         manipulation New_H_subcoal     New_H  
+12  [R, P, T, F, J, G, L, C, B, M, I, K, A, S, E, ...      0.711624  0.632303  
+15  [R, D, S, K, E, F, I, H, J, P, Q, T, B, N, A, ...      0.842877  0.157123  
+
+[2 rows x 25 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 7, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1})    0  1  2  3  4  5  6  7  8  9  ... 14 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  B  A  P  E  I  N  0.513659      0   
+4   K  C  R  E  T  O  D  F  H  G  ...  B  L  S  Q  J  I  0.430283      0   
+12  P  T  F  R  J  G  L  C  B  M  ...  E  D  N  Q  O  H  0.513659      0   
+
+                                         manipulation     New_H  
+0   [R, S, K, J, T, C, G, H, F, M, Q, D, L, O, B, ...  0.711624  
+4   [R, K, C, E, T, O, D, F, H, G, P, A, M, N, B, ...  0.765576  
+12  [R, P, T, F, J, G, L, C, B, M, I, K, A, S, E, ...  0.711624  
+
+[3 rows x 24 columns](True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  A  P  E  I  N  0.513659      0   
+4   K  C  R  E  T  O  D  F  H  G  ...  L  S  Q  J  I  0.430283      0   
+12  P  T  F  R  J  G  L  C  B  M  ...  D  N  Q  O  H  0.513659      0   
+
+                                         manipulation New_H_subcoal     New_H  
+0   [R, S, K, J, T, C, G, H, F, M, Q, D, L, O, B, ...      0.711624  0.599751  
+4   [R, K, C, E, T, O, D, F, H, G, P, A, M, N, B, ...      0.765576  0.513659  
+12  [R, P, T, F, J, G, L, C, B, M, I, K, A, S, E, ...      0.711624  0.632303  
+
+[3 rows x 25 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 7, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1})    0  1  2  3  4  5  6  7  8  9  ... 14 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  B  A  P  E  I  N  0.513659      0   
+4   K  C  R  E  T  O  D  F  H  G  ...  B  L  S  Q  J  I  0.430283      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  A  L  O  C  G  M  0.000000      0   
+
+                                         manipulation     New_H  
+0   [K, S, J, R, T, C, G, H, F, M, Q, D, L, O, B, ...  0.842877  
+4   [K, C, R, E, T, O, D, F, H, G, P, A, M, N, B, ...  1.000000  
+15  [K, D, R, S, E, F, I, H, J, P, Q, T, B, N, A, ...  0.711624  
+
+[3 rows x 24 columns](True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  A  P  E  I  N  0.513659      0   
+4   K  C  R  E  T  O  D  F  H  G  ...  L  S  Q  J  I  0.430283      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  L  O  C  G  M  0.000000      0   
+
+                                         manipulation New_H_subcoal     New_H  
+0   [K, S, J, R, T, C, G, H, F, M, Q, D, L, O, B, ...      0.842877  0.599751  
+4   [K, C, R, E, T, O, D, F, H, G, P, A, M, N, B, ...      1.000000  0.513659  
+15  [K, D, R, S, E, F, I, H, J, P, Q, T, B, N, A, ...      0.711624  0.157123  
+
+[3 rows x 25 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 7, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1})    0  1  2  3  4  5  6  7  8  9  ... 14 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  B  A  P  E  I  N  0.513659      0   
+4   K  C  R  E  T  O  D  F  H  G  ...  B  L  S  Q  J  I  0.430283      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  A  L  O  C  G  M  0.000000      0   
+
+                                         manipulation     New_H  
+0   [R, S, K, J, T, C, G, H, F, M, Q, D, L, O, B, ...  0.711624  
+4   [R, K, C, E, T, O, D, F, H, G, P, A, M, N, B, ...  0.765576  
+15  [R, D, S, K, E, F, I, H, J, P, Q, T, B, N, A, ...  0.842877  
+
+[3 rows x 24 columns](True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  A  P  E  I  N  0.513659      0   
+4   K  C  R  E  T  O  D  F  H  G  ...  L  S  Q  J  I  0.430283      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  L  O  C  G  M  0.000000      0   
+
+                                         manipulation New_H_subcoal     New_H  
+0   [R, S, K, J, T, C, G, H, F, M, Q, D, L, O, B, ...      0.711624  0.599751  
+4   [R, K, C, E, T, O, D, F, H, G, P, A, M, N, B, ...      0.765576  0.513659  
+15  [R, D, S, K, E, F, I, H, J, P, Q, T, B, N, A, ...      0.842877  0.157123  
+
+[3 rows x 25 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 7, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1})    0  1  2  3  4  5  6  7  8  9  ... 14 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  B  A  P  E  I  N  0.513659      0   
+12  P  T  F  R  J  G  L  C  B  M  ...  E  D  N  Q  O  H  0.513659      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  A  L  O  C  G  M  0.000000      0   
+
+                                         manipulation     New_H  
+0   [R, S, K, J, T, C, G, H, F, M, Q, D, L, O, B, ...  0.711624  
+12  [R, P, T, F, J, G, L, C, B, M, I, K, A, S, E, ...  0.711624  
+15  [R, D, S, K, E, F, I, H, J, P, Q, T, B, N, A, ...  0.842877  
+
+[3 rows x 24 columns](True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  A  P  E  I  N  0.513659      0   
+12  P  T  F  R  J  G  L  C  B  M  ...  D  N  Q  O  H  0.513659      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  L  O  C  G  M  0.000000      0   
+
+                                         manipulation New_H_subcoal     New_H  
+0   [R, S, K, J, T, C, G, H, F, M, Q, D, L, O, B, ...      0.711624  0.599751  
+12  [R, P, T, F, J, G, L, C, B, M, I, K, A, S, E, ...      0.711624  0.632303  
+15  [R, D, S, K, E, F, I, H, J, P, Q, T, B, N, A, ...      0.842877  0.157123  
+
+[3 rows x 25 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 7, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1})(False,     0  1  2  3  4  5  6  7  8  9  ... 14 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  B  A  P  E  I  N  0.513659      0   
+4   K  C  R  E  T  O  D  F  H  G  ...  B  L  S  Q  J  I  0.430283      0   
+12  P  T  F  R  J  G  L  C  B  M  ...  E  D  N  Q  O  H  0.513659      0   
+13  Q  P  T  C  E  L  G  I  A  R  ...  D  S  H  F  N  J  0.400249      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  A  L  O  C  G  M  0.000000      0   
+
+                                         manipulation     New_H  
+0   [G, S, K, J, R, T, C, H, F, M, Q, D, L, O, B, ...  0.599751  
+4   [G, K, C, R, E, T, O, D, F, H, P, A, M, N, B, ...  0.513659  
+12  [G, P, T, F, R, J, L, C, B, M, I, K, A, S, E, ...  0.632303  
+13  [G, Q, P, T, C, E, L, I, A, R, O, K, B, M, D, ...  0.599751  
+15  [G, D, R, S, K, E, F, I, H, J, P, Q, T, B, N, ...  0.157123  
+
+[5 rows x 24 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 7, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1}, [])    0  1  2  3  4  5  6  7  8  9  ... 14 15 16 17 18 19         H gruppo  \
+4   K  C  R  E  T  O  D  F  H  G  ...  B  L  S  Q  J  I  0.430283      0   
+12  P  T  F  R  J  G  L  C  B  M  ...  E  D  N  Q  O  H  0.513659      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  A  L  O  C  G  M  0.000000      0   
+
+                                         manipulation     New_H  
+4   [R, K, C, E, T, O, D, F, H, G, P, A, M, N, B, ...  0.765576  
+12  [R, P, T, F, J, G, L, C, B, M, I, K, A, S, E, ...  0.711624  
+15  [R, D, S, K, E, F, I, H, J, P, Q, T, B, N, A, ...  0.842877  
+
+[3 rows x 24 columns](True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+4   K  C  R  E  T  O  D  F  H  G  ...  L  S  Q  J  I  0.430283      0   
+12  P  T  F  R  J  G  L  C  B  M  ...  D  N  Q  O  H  0.513659      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  L  O  C  G  M  0.000000      0   
+
+                                         manipulation New_H_subcoal     New_H  
+4   [R, K, C, E, T, O, D, F, H, G, P, A, M, N, B, ...      0.765576  0.513659  
+12  [R, P, T, F, J, G, L, C, B, M, I, K, A, S, E, ...      0.711624  0.632303  
+15  [R, D, S, K, E, F, I, H, J, P, Q, T, B, N, A, ...      0.842877  0.157123  
+
+[3 rows x 25 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 7, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1})(False,     0  1  2  3  4  5  6  7  8  9  ... 14 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  B  A  P  E  I  N  0.513659      0   
+4   K  C  R  E  T  O  D  F  H  G  ...  B  L  S  Q  J  I  0.430283      0   
+12  P  T  F  R  J  G  L  C  B  M  ...  E  D  N  Q  O  H  0.513659      0   
+13  Q  P  T  C  E  L  G  I  A  R  ...  D  S  H  F  N  J  0.400249      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  A  L  O  C  G  M  0.000000      0   
+
+                                         manipulation     New_H  
+0   [G, S, K, J, R, T, C, H, F, M, Q, D, L, O, B, ...  0.599751  
+4   [G, K, C, R, E, T, O, D, F, H, P, A, M, N, B, ...  0.513659  
+12  [G, P, T, F, R, J, L, C, B, M, I, K, A, S, E, ...  0.632303  
+13  [G, Q, P, T, C, E, L, I, A, R, O, K, B, M, D, ...  0.599751  
+15  [G, D, R, S, K, E, F, I, H, J, P, Q, T, B, N, ...  0.157123  
+
+[5 rows x 24 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 7, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1}, [])(False,     0  1  2  3  4  5  6  7  8  9  ... 14 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  B  A  P  E  I  N  0.513659      0   
+4   K  C  R  E  T  O  D  F  H  G  ...  B  L  S  Q  J  I  0.430283      0   
+12  P  T  F  R  J  G  L  C  B  M  ...  E  D  N  Q  O  H  0.513659      0   
+13  Q  P  T  C  E  L  G  I  A  R  ...  D  S  H  F  N  J  0.400249      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  A  L  O  C  G  M  0.000000      0   
+
+                                         manipulation     New_H  
+0   [G, S, K, J, R, T, C, H, F, M, Q, D, L, O, B, ...  0.599751  
+4   [G, K, C, R, E, T, O, D, F, H, P, A, M, N, B, ...  0.513659  
+12  [G, P, T, F, R, J, L, C, B, M, I, K, A, S, E, ...  0.632303  
+13  [G, Q, P, T, C, E, L, I, A, R, O, K, B, M, D, ...  0.599751  
+15  [G, D, R, S, K, E, F, I, H, J, P, Q, T, B, N, ...  0.157123  
+
+[5 rows x 24 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 7, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1}, [])(False,     0  1  2  3  4  5  6  7  8  9  ... 14 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  B  A  P  E  I  N  0.513659      0   
+4   K  C  R  E  T  O  D  F  H  G  ...  B  L  S  Q  J  I  0.430283      0   
+12  P  T  F  R  J  G  L  C  B  M  ...  E  D  N  Q  O  H  0.513659      0   
+13  Q  P  T  C  E  L  G  I  A  R  ...  D  S  H  F  N  J  0.400249      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  A  L  O  C  G  M  0.000000      0   
+
+                                         manipulation     New_H  
+0   [G, S, K, J, R, T, C, H, F, M, Q, D, L, O, B, ...  0.599751  
+4   [G, K, C, R, E, T, O, D, F, H, P, A, M, N, B, ...  0.513659  
+12  [G, P, T, F, R, J, L, C, B, M, I, K, A, S, E, ...  0.632303  
+13  [G, Q, P, T, C, E, L, I, A, R, O, K, B, M, D, ...  0.599751  
+15  [G, D, R, S, K, E, F, I, H, J, P, Q, T, B, N, ...  0.157123  
+
+[5 rows x 24 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 7, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1}, [])    0  1  2  3  4  5  6  7  8  9  ... 14 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  B  A  P  E  I  N  0.513659      0   
+4   K  C  R  E  T  O  D  F  H  G  ...  B  L  S  Q  J  I  0.430283      0   
+12  P  T  F  R  J  G  L  C  B  M  ...  E  D  N  Q  O  H  0.513659      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  A  L  O  C  G  M  0.000000      0   
+
+                                         manipulation     New_H  
+0   [R, S, K, J, T, C, G, H, F, M, Q, D, L, O, B, ...  0.711624  
+4   [R, K, C, E, T, O, D, F, H, G, P, A, M, N, B, ...  0.765576  
+12  [R, P, T, F, J, G, L, C, B, M, I, K, A, S, E, ...  0.711624  
+15  [R, D, S, K, E, F, I, H, J, P, Q, T, B, N, A, ...  0.842877  
+
+[4 rows x 24 columns](True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  A  P  E  I  N  0.513659      0   
+4   K  C  R  E  T  O  D  F  H  G  ...  L  S  Q  J  I  0.430283      0   
+12  P  T  F  R  J  G  L  C  B  M  ...  D  N  Q  O  H  0.513659      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  L  O  C  G  M  0.000000      0   
+
+                                         manipulation New_H_subcoal     New_H  
+0   [R, S, K, J, T, C, G, H, F, M, Q, D, L, O, B, ...      0.711624  0.599751  
+4   [R, K, C, E, T, O, D, F, H, G, P, A, M, N, B, ...      0.765576  0.513659  
+12  [R, P, T, F, J, G, L, C, B, M, I, K, A, S, E, ...      0.711624  0.632303  
+15  [R, D, S, K, E, F, I, H, J, P, Q, T, B, N, A, ...      0.842877  0.157123  
+
+[4 rows x 25 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 7, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1})(False,     0  1  2  3  4  5  6  7  8  9  ... 14 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  B  A  P  E  I  N  0.513659      0   
+4   K  C  R  E  T  O  D  F  H  G  ...  B  L  S  Q  J  I  0.430283      0   
+12  P  T  F  R  J  G  L  C  B  M  ...  E  D  N  Q  O  H  0.513659      0   
+13  Q  P  T  C  E  L  G  I  A  R  ...  D  S  H  F  N  J  0.400249      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  A  L  O  C  G  M  0.000000      0   
+
+                                         manipulation     New_H  
+0   [G, S, K, J, R, T, C, H, F, M, Q, D, L, O, B, ...  0.599751  
+4   [G, K, C, R, E, T, O, D, F, H, P, A, M, N, B, ...  0.513659  
+12  [G, P, T, F, R, J, L, C, B, M, I, K, A, S, E, ...  0.632303  
+13  [G, Q, P, T, C, E, L, I, A, R, O, K, B, M, D, ...  0.599751  
+15  [G, D, R, S, K, E, F, I, H, J, P, Q, T, B, N, ...  0.157123  
+
+[5 rows x 24 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 7, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1}, [])(False,     0  1  2  3  4  5  6  7  8  9  ... 14 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  B  A  P  E  I  N  0.513659      0   
+4   K  C  R  E  T  O  D  F  H  G  ...  B  L  S  Q  J  I  0.430283      0   
+12  P  T  F  R  J  G  L  C  B  M  ...  E  D  N  Q  O  H  0.513659      0   
+13  Q  P  T  C  E  L  G  I  A  R  ...  D  S  H  F  N  J  0.400249      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  A  L  O  C  G  M  0.000000      0   
+
+                                         manipulation     New_H  
+0   [G, S, K, J, R, T, C, H, F, M, Q, D, L, O, B, ...  0.599751  
+4   [G, K, C, R, E, T, O, D, F, H, P, A, M, N, B, ...  0.513659  
+12  [G, P, T, F, R, J, L, C, B, M, I, K, A, S, E, ...  0.632303  
+13  [G, Q, P, T, C, E, L, I, A, R, O, K, B, M, D, ...  0.599751  
+15  [G, D, R, S, K, E, F, I, H, J, P, Q, T, B, N, ...  0.157123  
+
+[5 rows x 24 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 7, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1}, [])(False,     0  1  2  3  4  5  6  7  8  9  ... 14 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  B  A  P  E  I  N  0.513659      0   
+4   K  C  R  E  T  O  D  F  H  G  ...  B  L  S  Q  J  I  0.430283      0   
+12  P  T  F  R  J  G  L  C  B  M  ...  E  D  N  Q  O  H  0.513659      0   
+13  Q  P  T  C  E  L  G  I  A  R  ...  D  S  H  F  N  J  0.400249      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  A  L  O  C  G  M  0.000000      0   
+
+                                         manipulation     New_H  
+0   [G, S, K, J, R, T, C, H, F, M, Q, D, L, O, B, ...  0.599751  
+4   [G, K, C, R, E, T, O, D, F, H, P, A, M, N, B, ...  0.513659  
+12  [G, P, T, F, R, J, L, C, B, M, I, K, A, S, E, ...  0.632303  
+13  [G, Q, P, T, C, E, L, I, A, R, O, K, B, M, D, ...  0.599751  
+15  [G, D, R, S, K, E, F, I, H, J, P, Q, T, B, N, ...  0.157123  
+
+[5 rows x 24 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 7, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1}, [])(False,     0  1  2  3  4  5  6  7  8  9  ... 14 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  B  A  P  E  I  N  0.513659      0   
+4   K  C  R  E  T  O  D  F  H  G  ...  B  L  S  Q  J  I  0.430283      0   
+12  P  T  F  R  J  G  L  C  B  M  ...  E  D  N  Q  O  H  0.513659      0   
+13  Q  P  T  C  E  L  G  I  A  R  ...  D  S  H  F  N  J  0.400249      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  A  L  O  C  G  M  0.000000      0   
+
+                                         manipulation     New_H  
+0   [G, S, K, J, R, T, C, H, F, M, Q, D, L, O, B, ...  0.599751  
+4   [G, K, C, R, E, T, O, D, F, H, P, A, M, N, B, ...  0.513659  
+12  [G, P, T, F, R, J, L, C, B, M, I, K, A, S, E, ...  0.632303  
+13  [G, Q, P, T, C, E, L, I, A, R, O, K, B, M, D, ...  0.599751  
+15  [G, D, R, S, K, E, F, I, H, J, P, Q, T, B, N, ...  0.157123  
+
+[5 rows x 24 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 7, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1}, [])(True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+4   K  C  R  E  T  O  D  F  H  G  ...  L  S  Q  J  I  0.430283      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  L  O  C  G  M  0.000000      0   
+
+                                         manipulation New_H_subcoal     New_H  
+4   [R, K, C, E, T, O, D, F, H, G, P, A, M, N, B, ...      0.765576  0.569717  
+15  [R, D, S, K, E, F, I, H, J, P, Q, T, B, N, A, ...      0.842877  0.632303  
+
+[2 rows x 25 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 7, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1})(True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+4   K  C  R  E  T  O  D  F  H  G  ...  L  S  Q  J  I  0.430283      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  L  O  C  G  M  0.000000      0   
+
+                                         manipulation New_H_subcoal     New_H  
+4   [R, K, C, E, T, O, D, F, H, G, P, A, M, N, B, ...      0.765576  0.711624  
+15  [R, D, S, K, E, F, I, H, J, P, Q, T, B, N, A, ...      0.842877  0.668792  
+
+[2 rows x 25 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 7, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1})(True,    0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+0  S  K  J  R  T  C  G  H  F  M  ...  A  P  E  I  N  0.513659      0   
+4  K  C  R  E  T  O  D  F  H  G  ...  L  S  Q  J  I  0.430283      0   
+
+                                        manipulation New_H_subcoal     New_H  
+0  [R, S, K, J, T, C, G, H, F, M, Q, D, L, O, B, ...      0.711624  0.668792  
+4  [R, K, C, E, T, O, D, F, H, G, P, A, M, N, B, ...      0.765576  0.668792  
+
+[2 rows x 25 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 7, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1})(True,    0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+0  S  K  J  R  T  C  G  H  F  M  ...  A  P  E  I  N  0.513659      0   
+4  K  C  R  E  T  O  D  F  H  G  ...  L  S  Q  J  I  0.430283      0   
+
+                                        manipulation New_H_subcoal     New_H  
+0  [R, S, K, J, T, C, G, H, F, M, Q, D, L, O, B, ...      0.711624  0.668792  
+4  [R, K, C, E, T, O, D, F, H, G, P, A, M, N, B, ...      0.765576  0.668792  
+
+[2 rows x 25 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 7, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1})(True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  A  P  E  I  N  0.513659      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  L  O  C  G  M  0.000000      0   
+
+                                         manipulation New_H_subcoal     New_H  
+0   [K, S, J, R, T, C, G, H, F, M, Q, D, L, O, B, ...      0.842877  0.668792  
+15  [K, D, R, S, E, F, I, H, J, P, Q, T, B, N, A, ...      0.711624  0.458745  
+
+[2 rows x 25 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 7, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1})(True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  A  P  E  I  N  0.513659      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  L  O  C  G  M  0.000000      0   
+
+                                         manipulation New_H_subcoal     New_H  
+0   [R, S, K, J, T, C, G, H, F, M, Q, D, L, O, B, ...      0.711624  0.668792  
+15  [R, D, S, K, E, F, I, H, J, P, Q, T, B, N, A, ...      0.842877  0.458745  
+
+[2 rows x 25 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 7, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1})(True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+4   K  C  R  E  T  O  D  F  H  G  ...  L  S  Q  J  I  0.430283      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  L  O  C  G  M  0.000000      0   
+
+                                         manipulation New_H_subcoal     New_H  
+4   [R, K, C, E, T, O, D, F, H, G, P, A, M, N, B, ...      0.765576  0.668792  
+15  [R, D, S, K, E, F, I, H, J, P, Q, T, B, N, A, ...      0.842877  0.458745  
+
+[2 rows x 25 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 7, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1})    0  1  2  3  4  5  6  7  8  9  ... 14 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  B  A  P  E  I  N  0.513659      0   
+4   K  C  R  E  T  O  D  F  H  G  ...  B  L  S  Q  J  I  0.430283      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  A  L  O  C  G  M  0.000000      0   
+
+                                         manipulation     New_H  
+0   [K, S, J, R, T, C, G, H, F, M, Q, D, L, O, B, ...  0.842877  
+4   [K, C, R, E, T, O, D, F, H, G, P, A, M, N, B, ...  1.000000  
+15  [K, D, R, S, E, F, I, H, J, P, Q, T, B, N, A, ...  0.711624  
+
+[3 rows x 24 columns](True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  A  P  E  I  N  0.513659      0   
+4   K  C  R  E  T  O  D  F  H  G  ...  L  S  Q  J  I  0.430283      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  L  O  C  G  M  0.000000      0   
+
+                                         manipulation New_H_subcoal     New_H  
+0   [K, S, J, R, T, C, G, H, F, M, Q, D, L, O, B, ...      0.842877  0.668792  
+4   [K, C, R, E, T, O, D, F, H, G, P, A, M, N, B, ...      1.000000  0.668792  
+15  [K, D, R, S, E, F, I, H, J, P, Q, T, B, N, A, ...      0.711624  0.458745  
+
+[3 rows x 25 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 7, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1})    0  1  2  3  4  5  6  7  8  9  ... 14 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  B  A  P  E  I  N  0.513659      0   
+4   K  C  R  E  T  O  D  F  H  G  ...  B  L  S  Q  J  I  0.430283      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  A  L  O  C  G  M  0.000000      0   
+
+                                         manipulation     New_H  
+0   [R, S, K, J, T, C, G, H, F, M, Q, D, L, O, B, ...  0.711624  
+4   [R, K, C, E, T, O, D, F, H, G, P, A, M, N, B, ...  0.765576  
+15  [R, D, S, K, E, F, I, H, J, P, Q, T, B, N, A, ...  0.842877  
+
+[3 rows x 24 columns](True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  A  P  E  I  N  0.513659      0   
+4   K  C  R  E  T  O  D  F  H  G  ...  L  S  Q  J  I  0.430283      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  L  O  C  G  M  0.000000      0   
+
+                                         manipulation New_H_subcoal     New_H  
+0   [R, S, K, J, T, C, G, H, F, M, Q, D, L, O, B, ...      0.711624  0.668792  
+4   [R, K, C, E, T, O, D, F, H, G, P, A, M, N, B, ...      0.765576  0.668792  
+15  [R, D, S, K, E, F, I, H, J, P, Q, T, B, N, A, ...      0.842877  0.458745  
+
+[3 rows x 25 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 7, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1})(True,    0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+0  S  K  J  R  T  C  G  H  F  M  ...  A  P  E  I  N  0.513659      0   
+4  K  C  R  E  T  O  D  F  H  G  ...  L  S  Q  J  I  0.430283      0   
+
+                                        manipulation New_H_subcoal     New_H  
+0  [R, S, K, J, T, C, G, H, F, M, Q, D, L, O, B, ...      0.711624  0.668792  
+4  [R, K, C, E, T, O, D, F, H, G, P, A, M, N, B, ...      0.765576  0.668792  
+
+[2 rows x 25 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 7, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1})(True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  A  P  E  I  N  0.513659      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  L  O  C  G  M  0.000000      0   
+
+                                         manipulation New_H_subcoal     New_H  
+0   [K, S, J, R, T, C, G, H, F, M, Q, D, L, O, B, ...      0.842877  0.668792  
+15  [K, D, R, S, E, F, I, H, J, P, Q, T, B, N, A, ...      0.711624  0.458745  
+
+[2 rows x 25 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 7, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1})(True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  A  P  E  I  N  0.513659      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  L  O  C  G  M  0.000000      0   
+
+                                         manipulation New_H_subcoal     New_H  
+0   [R, S, K, J, T, C, G, H, F, M, Q, D, L, O, B, ...      0.711624  0.668792  
+15  [R, D, S, K, E, F, I, H, J, P, Q, T, B, N, A, ...      0.842877  0.458745  
+
+[2 rows x 25 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 7, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1})(True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+4   K  C  R  E  T  O  D  F  H  G  ...  L  S  Q  J  I  0.430283      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  L  O  C  G  M  0.000000      0   
+
+                                         manipulation New_H_subcoal     New_H  
+4   [R, K, C, E, T, O, D, F, H, G, P, A, M, N, B, ...      0.765576  0.668792  
+15  [R, D, S, K, E, F, I, H, J, P, Q, T, B, N, A, ...      0.842877  0.458745  
+
+[2 rows x 25 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 7, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1})    0  1  2  3  4  5  6  7  8  9  ... 14 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  B  A  P  E  I  N  0.513659      0   
+4   K  C  R  E  T  O  D  F  H  G  ...  B  L  S  Q  J  I  0.430283      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  A  L  O  C  G  M  0.000000      0   
+
+                                         manipulation     New_H  
+0   [K, S, J, R, T, C, G, H, F, M, Q, D, L, O, B, ...  0.842877  
+4   [K, C, R, E, T, O, D, F, H, G, P, A, M, N, B, ...  1.000000  
+15  [K, D, R, S, E, F, I, H, J, P, Q, T, B, N, A, ...  0.711624  
+
+[3 rows x 24 columns](True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  A  P  E  I  N  0.513659      0   
+4   K  C  R  E  T  O  D  F  H  G  ...  L  S  Q  J  I  0.430283      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  L  O  C  G  M  0.000000      0   
+
+                                         manipulation New_H_subcoal     New_H  
+0   [K, S, J, R, T, C, G, H, F, M, Q, D, L, O, B, ...      0.842877  0.668792  
+4   [K, C, R, E, T, O, D, F, H, G, P, A, M, N, B, ...      1.000000  0.668792  
+15  [K, D, R, S, E, F, I, H, J, P, Q, T, B, N, A, ...      0.711624  0.458745  
+
+[3 rows x 25 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 7, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1})    0  1  2  3  4  5  6  7  8  9  ... 14 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  B  A  P  E  I  N  0.513659      0   
+4   K  C  R  E  T  O  D  F  H  G  ...  B  L  S  Q  J  I  0.430283      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  A  L  O  C  G  M  0.000000      0   
+
+                                         manipulation     New_H  
+0   [R, S, K, J, T, C, G, H, F, M, Q, D, L, O, B, ...  0.711624  
+4   [R, K, C, E, T, O, D, F, H, G, P, A, M, N, B, ...  0.765576  
+15  [R, D, S, K, E, F, I, H, J, P, Q, T, B, N, A, ...  0.842877  
+
+[3 rows x 24 columns](True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  A  P  E  I  N  0.513659      0   
+4   K  C  R  E  T  O  D  F  H  G  ...  L  S  Q  J  I  0.430283      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  L  O  C  G  M  0.000000      0   
+
+                                         manipulation New_H_subcoal     New_H  
+0   [R, S, K, J, T, C, G, H, F, M, Q, D, L, O, B, ...      0.711624  0.668792  
+4   [R, K, C, E, T, O, D, F, H, G, P, A, M, N, B, ...      0.765576  0.668792  
+15  [R, D, S, K, E, F, I, H, J, P, Q, T, B, N, A, ...      0.842877  0.458745  
+
+[3 rows x 25 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 7, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1})(True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  A  P  E  I  N  0.513659      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  L  O  C  G  M  0.000000      0   
+
+                                         manipulation New_H_subcoal     New_H  
+0   [K, S, J, R, T, C, G, H, F, M, Q, D, L, O, B, ...      0.842877  0.632303  
+15  [K, D, R, S, E, F, I, H, J, P, Q, T, B, N, A, ...      0.711624  0.234424  
+
+[2 rows x 25 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 7, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1})(True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  A  P  E  I  N  0.513659      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  L  O  C  G  M  0.000000      0   
+
+                                         manipulation New_H_subcoal     New_H  
+0   [R, S, K, J, T, C, G, H, F, M, Q, D, L, O, B, ...      0.711624  0.632303  
+15  [R, D, S, K, E, F, I, H, J, P, Q, T, B, N, A, ...      0.842877  0.234424  
+
+[2 rows x 25 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 7, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1})    0  1  2  3  4  5  6  7  8  9  ... 14 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  B  A  P  E  I  N  0.513659      0   
+4   K  C  R  E  T  O  D  F  H  G  ...  B  L  S  Q  J  I  0.430283      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  A  L  O  C  G  M  0.000000      0   
+
+                                         manipulation     New_H  
+0   [K, S, J, R, T, C, G, H, F, M, Q, D, L, O, B, ...  0.842877  
+4   [K, C, R, E, T, O, D, F, H, G, P, A, M, N, B, ...  1.000000  
+15  [K, D, R, S, E, F, I, H, J, P, Q, T, B, N, A, ...  0.711624  
+
+[3 rows x 24 columns](True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  A  P  E  I  N  0.513659      0   
+4   K  C  R  E  T  O  D  F  H  G  ...  L  S  Q  J  I  0.430283      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  L  O  C  G  M  0.000000      0   
+
+                                         manipulation New_H_subcoal     New_H  
+0   [K, S, J, R, T, C, G, H, F, M, Q, D, L, O, B, ...      0.842877  0.632303  
+4   [K, C, R, E, T, O, D, F, H, G, P, A, M, N, B, ...      1.000000  0.842877  
+15  [K, D, R, S, E, F, I, H, J, P, Q, T, B, N, A, ...      0.711624  0.234424  
+
+[3 rows x 25 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 7, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1})(True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  A  P  E  I  N  0.513659      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  L  O  C  G  M  0.000000      0   
+
+                                         manipulation New_H_subcoal     New_H  
+0   [K, S, J, R, T, C, G, H, F, M, Q, D, L, O, B, ...      0.842877  0.668792  
+15  [K, D, R, S, E, F, I, H, J, P, Q, T, B, N, A, ...      0.711624  0.458745  
+
+[2 rows x 25 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 7, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1})(True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  A  P  E  I  N  0.513659      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  L  O  C  G  M  0.000000      0   
+
+                                         manipulation New_H_subcoal     New_H  
+0   [R, S, K, J, T, C, G, H, F, M, Q, D, L, O, B, ...      0.711624  0.668792  
+15  [R, D, S, K, E, F, I, H, J, P, Q, T, B, N, A, ...      0.842877  0.458745  
+
+[2 rows x 25 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 7, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1})(True,     0  1  2  3  4  5  6  7  8  9  ... 15 16 17 18 19         H gruppo  \
+4   K  C  R  E  T  O  D  F  H  G  ...  L  S  Q  J  I  0.430283      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  L  O  C  G  M  0.000000      0   
+
+                                         manipulation New_H_subcoal     New_H  
+4   [R, K, C, E, T, O, D, F, H, G, P, A, M, N, B, ...      0.765576  0.668792  
+15  [R, D, S, K, E, F, I, H, J, P, Q, T, B, N, A, ...      0.842877  0.458745  
+
+[2 rows x 25 columns], Winner: G
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 7, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 3, 'S': 1, 'T': 1})(True,     0  1  2  3  4  5  6  7  8  9  ... 14 15 16 17 18 19         H gruppo  \
+0   S  K  J  R  T  C  G  H  F  M  ...  B  A  P  E  I  N  0.513659      0   
+4   K  C  R  E  T  O  D  F  H  G  ...  B  L  S  Q  J  I  0.430283      0   
+12  P  T  F  R  J  G  L  C  B  M  ...  E  D  N  Q  O  H  0.513659      0   
+13  Q  P  T  C  E  L  G  I  A  R  ...  D  S  H  F  N  J  0.400249      0   
+15  D  R  S  K  E  F  I  H  J  P  ...  A  L  O  C  G  M  0.000000      0   
+
+                                         manipulation     New_H  
+0   [R, S, K, J, T, C, G, H, F, M, Q, D, L, O, B, ...  0.711624  
+4   [R, K, C, E, T, O, D, F, H, G, P, A, M, N, B, ...  0.765576  
+12  [R, P, T, F, J, G, L, C, B, M, I, K, A, S, E, ...  0.711624  
+13  [R, Q, P, T, C, E, L, G, I, A, O, K, B, M, D, ...  0.513659  
+15  [R, D, S, K, E, F, I, H, J, P, Q, T, B, N, A, ...  0.842877  
+
+[5 rows x 24 columns], Winner: R
+{'A': 1, 'B': 1, 'C': 0, 'D': 1, 'E': 1, 'F': 3, 'G': 2, 'H': 2, 'I': 0, 'J': 0, 'K': 1, 'L': 1, 'M': 4, 'N': 1, 'O': 1, 'P': 0, 'Q': 1, 'R': 8, 'S': 1, 'T': 1})
