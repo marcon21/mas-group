@@ -8,9 +8,54 @@ import pandas as pd
 import hashlib
 
 
+def memoize(func):
+    cache = {}
+
+    @functools.wraps(func)
+    def memoized_func(*args):
+        hash_value = hashlib.sha1(pickle.dumps(args)).hexdigest()
+        if hash_value not in cache:
+            cache[hash_value] = func(*args)
+        return cache[hash_value]
+
+    return memoized_func
+
+
 def get_df_hash(df):
     df_bytes = df.to_json().encode()
     return hashlib.md5(df_bytes).hexdigest()
+
+
+@memoize
+def compromise(new_poss_coal, results):
+    better_op = []
+
+    for index, row in new_poss_coal.iterrows():
+        pref = list(row.iloc[0:-4])
+        ind = pref.index(results.winner)
+        candidates = set(
+            remove_elements_above_or_equal_index(pref, ind)
+        )  # find the candidates above the winner
+        better_op.append(candidates)
+
+    if len(better_op) > 1:  # if the coalition is bigg than 1
+        intersection = better_op[1].copy()
+        for el in better_op:
+            intersection = set.intersection(el, intersection)
+
+        if len(intersection) > 0:
+
+            for alt in intersection:  # try the alternatives in the intersection
+
+                man = []  # initialize the list with the voters manipulations
+
+                for index, row in new_poss_coal.iterrows():
+                    pref = list(row.iloc[0:-4])
+                    ind = pref.index(alt)
+                    pref.pop(ind)
+                    pref.insert(0, alt)
+                    man.append(pref)
+    return man
 
 
 def remove_elements_above_or_equal_index(lst, index):
