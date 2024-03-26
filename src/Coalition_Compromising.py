@@ -8,6 +8,8 @@ from sklearn.cluster import AgglomerativeClustering
 from src import utils
 from src.outcomes import plurality_outcome
 from src.outcomes import borda_outcome
+from src.outcomes import for_two_outcome
+from src.outcomes import veto_outcome
 from src.happiness_level import HappinessLevel
 import functools
 import pickle
@@ -87,6 +89,12 @@ def find_new_happiness(
     elif voting == "borda":
 
         new_results = borda_outcome(new_voting_df.iloc[:, :n_cand].values.T)
+    elif voting == "voting_for_2":
+
+        new_results = for_two_outcome(new_voting_df.iloc[:, :n_cand].values.T)
+    elif voting == "veto":
+
+        new_results = veto_outcome(new_voting_df.iloc[:, :n_cand].values.T)
 
     diz = HappinessLevel(
         voting_df.iloc[:, :n_cand].values.T, new_results.winner
@@ -116,9 +124,13 @@ def find_new_happiness2(
     if voting == "plurality":
         new_results = plurality_outcome(new_voting_df.iloc[:, :n_cand].values.T)
     elif voting == "borda":
-
         new_results = borda_outcome(new_voting_df.iloc[:, :n_cand].values.T)
+    elif voting == "voting_for_two":
+        new_results = for_two_outcome(new_voting_df.iloc[:, :n_cand].values.T)
+    elif voting == "veto":
+        new_results = for_two_outcome(new_voting_df.iloc[:, :n_cand].values.T)
 
+    print(new_results)
     diz = HappinessLevel(
         voting_df.iloc[:, :n_cand].values.T, new_results.winner
     ).happiness_level_dict
@@ -279,7 +291,6 @@ def find_stable_coalitions_by_compromising(
                                             )
                                             if stable2 == True:
 
-                                                coal.append(sb)
                                                 coal.append(
                                                     (True, subcoals[ind], new_result)
                                                 )
