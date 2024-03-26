@@ -8,23 +8,46 @@ from src.happiness_level import HappinessLevel
 
 
 class StrategicVoting:
-    def __init__(self, preferences: VotingArray):
+    def __init__(
+        self,
+        preferences: VotingArray,
+        happiness: HappinessLevel,
+        schema_outcome_f: Callable,
+    ):
         self.preferences: VotingArray = preferences
-        self.happiness: HappinessLevel = None
+        self.happiness: HappinessLevel = happiness
+        self.schema_outcome_f: Callable = schema_outcome_f
 
         self.all = DataFrame()
         self.best = DataFrame()
         self.risk = None
 
-    def run(self, happiness: HappinessLevel, schema_outcome_f: Callable):
-        self.happiness = happiness
-        self._find_all(schema_outcome_f)
+    def run(self, show=False):
+        """
+        Runs the strategic voting algorithm.
+
+        Args:
+            show (bool, optional): If True, displays the results. Defaults to False.
+
+        Returns:
+            self: The current instance of the class.
+
+        """
+        self._find_all()
         self._find_best()
         self._compute_risk()
+
+        if show:
+            print("Strategic Voting")
+            display(self.all)
+            print("Best Strategic Voting")
+            display(self.best)
+            print(f"Risk: {self.risk}")
+
         return self
 
-    def _find_all(self, schema_outcome_f: Callable):
-        result = schema_outcome_f(self.preferences)
+    def _find_all(self):
+        result = self.schema_outcome_f(self.preferences)
         strategic_voting = []
 
         for i in range(self.preferences.shape[1]):
@@ -37,8 +60,12 @@ class StrategicVoting:
                 if np.argwhere(p == result.winner)[0][0] >= vwr:
                     new_voting = self.preferences.copy()
                     new_voting[:, i] = p
-                    new_result = schema_outcome_f(new_voting)
-                    new_happiness = HappinessLevel(self.preferences, new_result.winner)
+                    new_result = self.schema_outcome_f(new_voting)
+                    new_happiness = HappinessLevel(
+                        self.preferences,
+                        new_result.winner,
+                        self.happiness.voting_schema,
+                    )
                     new_vwr = np.argwhere(self.preferences[:, i] == new_result.winner)[
                         0
                     ][0]
