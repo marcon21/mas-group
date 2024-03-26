@@ -207,8 +207,10 @@ def find_stable_coalitions_by_compromising(
         cluster_epoch += max_coal + 1
 
         for coal_id, coalition in others.groupby("gruppo"):
+            print(coalition)
 
             if get_df_hash(coalition.iloc[:, :-2]) not in coal_index:
+
                 better_op = []
                 coal_index[get_df_hash(coalition.iloc[:, :-2])] = coalition
 
@@ -221,12 +223,12 @@ def find_stable_coalitions_by_compromising(
                     better_op.append(candidates)
 
                 if len(better_op) > 1:  # if the coalition is bigg than 1
+
                     intersection = better_op[1].copy()
                     for el in better_op:
                         intersection = set.intersection(el, intersection)
 
                     if len(intersection) > 0:
-
                         for (
                             alt
                         ) in intersection:  # try the alternatives in the intersection
@@ -253,7 +255,7 @@ def find_stable_coalitions_by_compromising(
                             coalition = coalition.iloc[:, :-1]
 
                             if analyze_core(coal_new_h, "H", "New_H") == True:
-
+                                print(intersection)
                                 print(
                                     f"Pushing {alt} made everyone in the group {coal_id} happier, here the new winner:  ",
                                     new_result,
