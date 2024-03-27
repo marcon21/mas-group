@@ -2,7 +2,6 @@ import numpy as np
 import pandas as pd
 import hashlib
 from itertools import combinations
-from functools import lru_cache
 from scipy.stats import spearmanr
 from sklearn.cluster import AgglomerativeClustering
 from src import utils
@@ -11,21 +10,6 @@ from src.outcomes import borda_outcome
 from src.outcomes import for_two_outcome
 from src.outcomes import veto_outcome
 from src.happiness_level import HappinessLevel
-import functools
-import pickle
-
-
-def memoize(func):
-    cache = {}
-
-    @functools.wraps(func)
-    def memoized_func(*args):
-        hash_value = hashlib.sha1(pickle.dumps(args)).hexdigest()
-        if hash_value not in cache:
-            cache[hash_value] = func(*args)
-        return cache[hash_value]
-
-    return memoized_func
 
 
 def get_df_hash(df):
@@ -40,12 +24,24 @@ def remove_elements_above_or_equal_index(lst, index):
     return lst[:index]
 
 
-@memoize
-def compromise(new_poss_coal, results):
-    better_op = []
+def burying(new_poss_coal, results):
+    mans = []
 
     for index, row in new_poss_coal.iterrows():
-        pref = list(row.iloc[0:-4])
+        pref = list(row)
+        ind = pref.index(results.winner)
+        pref.pop(ind)
+        pref.append(results.winner)
+        mans.append(pref)
+    return [mans]
+
+
+def compromise(new_poss_coal, results):
+    better_op = []
+    mans = []
+
+    for index, row in new_poss_coal.iterrows():
+        pref = list(row)
         ind = pref.index(results.winner)
         candidates = set(
             remove_elements_above_or_equal_index(pref, ind)
@@ -56,7 +52,6 @@ def compromise(new_poss_coal, results):
         intersection = better_op[1].copy()
         for el in better_op:
             intersection = set.intersection(el, intersection)
-
         if len(intersection) > 0:
 
             for alt in intersection:  # try the alternatives in the intersection
@@ -64,12 +59,28 @@ def compromise(new_poss_coal, results):
                 man = []  # initialize the list with the voters manipulations
 
                 for index, row in new_poss_coal.iterrows():
-                    pref = list(row.iloc[0:-4])
+                    pref = list(row)
                     ind = pref.index(alt)
                     pref.pop(ind)
                     pref.insert(0, alt)
                     man.append(pref)
-    return man
+
+                mans.append(man)
+    else:
+        for alt in better_op[0]:
+
+            man = []  # initialize the list with the voters manipulations
+
+            for index, row in new_poss_coal.iterrows():
+                pref = list(row)
+                ind = pref.index(alt)
+                pref.pop(ind)
+                pref.insert(0, alt)
+                man.append(pref)
+
+            mans.append(man)
+
+    return mans
 
 
 def find_new_happiness(
@@ -89,7 +100,7 @@ def find_new_happiness(
     elif voting == "borda":
 
         new_results = borda_outcome(new_voting_df.iloc[:, :n_cand].values.T)
-    elif voting == "voting_for_2":
+    elif voting == "voting_for_two":
 
         new_results = for_two_outcome(new_voting_df.iloc[:, :n_cand].values.T)
     elif voting == "veto":
@@ -130,7 +141,6 @@ def find_new_happiness2(
     elif voting == "veto":
         new_results = for_two_outcome(new_voting_df.iloc[:, :n_cand].values.T)
 
-    print(new_results)
     diz = HappinessLevel(
         voting_df.iloc[:, :n_cand].values.T, new_results.winner
     ).happiness_level_dict
@@ -157,7 +167,7 @@ def analyze_core(coalition, var1, var2):  # Analize if inside or not the code
         return False
 
 
-def stability_of_coalitions(coal, voting_df, results, voting):
+def stability_of_coalitions(coal, voting_df, results, voting, strategy):
 
     combinations_list = []
     stable = True
@@ -171,18 +181,24 @@ def stability_of_coalitions(coal, voting_df, results, voting):
         for el in combinations_list:
             indice = pd.Index(el)
             new_poss_coal = coal.loc[indice]
-            man = compromise(new_poss_coal, results)
-            coal_new_h, new_result = find_new_happiness2(
-                man, new_poss_coal.iloc[:, :-1], voting_df, voting
-            )  # compute the new happiness
+            if strategy == "compromising":
 
-            if analyze_core(coal_new_h, "H", "New_H_subcoal") == True:
+                mans = compromise(new_poss_coal.iloc[:, 0:-4], results)
+            else:
+                mans = burying(new_poss_coal.iloc[:, 0:-4], results)
 
-                is_stable = pd.concat([coal_new_h, new_poss_coal["New_H"]], axis=1)
+            for man in mans:
+                coal_new_h, new_result = find_new_happiness2(
+                    man, new_poss_coal.iloc[:, :-1], voting_df, voting
+                )  # compute the new happiness
 
-                if analyze_core(is_stable, "New_H", "New_H_subcoal") == True:
-                    stable = False
-                    subcoalitions.append(is_stable)
+                if analyze_core(coal_new_h, "H", "New_H_subcoal") == True:
+
+                    is_stable = pd.concat([coal_new_h, new_poss_coal["New_H"]], axis=1)
+
+                    if analyze_core(is_stable, "New_H", "New_H_subcoal") == True:
+                        stable = False
+                        subcoalitions.append(is_stable)
 
         combinations_list = []
         r += 1
@@ -194,7 +210,7 @@ def stability_of_coalitions(coal, voting_df, results, voting):
 
 
 def find_stable_coalitions_by_compromising(
-    max_coal, voting_df, happiness_level, results, voting="plurality"
+    voting_df, happiness_level, results, voting="plurality", strategy="compromising"
 ):
 
     win = results.winner
@@ -202,118 +218,188 @@ def find_stable_coalitions_by_compromising(
     others = voting_df[voting_df[0] != win]
     # Creating Dissimilarity Matrix
     rankings = np.array(others.T)
-    cor_mat, _ = spearmanr(rankings[:-2])
-    dsim_mat = np.around(1 - cor_mat, decimals=4)
-    np.fill_diagonal(dsim_mat, 0)
+    losers = 0
+    for valore in happiness_level:
+        if valore != 1:
+            losers += 1
+    if len(others.index) > 1:
+
+        if len(others.index) == 2:
+            cor_mat, _ = spearmanr(rankings[:-1])
+            cor_mat2 = np.zeros((2, 2))
+            cor_mat2[0, 1] = cor_mat
+            cor_mat2[1, 0] = cor_mat
+            cor_mat2[1, 1] = 1
+            cor_mat2[0, 0] = 1
+            dsim_mat = np.around(1 - cor_mat2, decimals=4)
+        else:
+
+            cor_mat, _ = spearmanr(rankings[:-1])
+            dsim_mat = np.around(1 - cor_mat, decimals=4)
+            np.fill_diagonal(dsim_mat, 0)
 
     # find stable coalitions
     coal = []
     coal_index = {}
-    scoal_index = {}
-    for num in range(max_coal, 1, -1):  # different partition.
+    New_Results = []
+    for num in range(losers, 0, -1):  # different partition.
+        if num > 1:
+            clustering = AgglomerativeClustering(
+                n_clusters=num, metric="precomputed", linkage="average"
+            )  # do clustering.
+            clusters = clustering.fit_predict(dsim_mat)
 
-        clustering = AgglomerativeClustering(
-            n_clusters=num, metric="precomputed", linkage="average"
-        )  # do clustering.
-        clusters = clustering.fit_predict(dsim_mat)
+        else:
+            clusters = np.zeros(len(others.index))
+
         others["gruppo"] = clusters
-
         for coal_id, coalition in others.groupby("gruppo"):
 
             if get_df_hash(coalition.iloc[:, :-2]) not in coal_index:
-                better_op = []
+
                 coal_index[get_df_hash(coalition.iloc[:, :-2])] = coalition
+                if strategy == "compromising":
+                    mans = compromise(coalition.iloc[:, :-2], results)
+                else:
+                    mans = burying(coalition.iloc[:, 0:-2], results)
 
-                for index, row in coalition.iterrows():
-                    pref = list(row.iloc[0:-2])
-                    ind = pref.index(win)
-                    candidates = set(
-                        remove_elements_above_or_equal_index(pref, ind)
-                    )  # find the candidates above the winner
-                    better_op.append(candidates)
+                for man in mans:
+                    coal_new_h, new_result = find_new_happiness(
+                        man, coalition, voting_df, voting
+                    )  # compute the new happiness
 
-                if len(better_op) > 1:  # if the coalition is bigg than 1
-                    intersection = better_op[1].copy()
-                    for el in better_op:
-                        intersection = set.intersection(el, intersection)
+                    coalition = coalition.iloc[:, :-1]
 
-                    if len(intersection) > 0:
+                    if analyze_core(coal_new_h, "H", "New_H") == True:
 
-                        for (
-                            alt
-                        ) in intersection:  # try the alternatives in the intersection
+                        stable, subcoals = stability_of_coalitions(
+                            coal_new_h, voting_df, results, voting, strategy
+                        )
 
-                            man = (
-                                []
-                            )  # initialize the list with the voters manipulations
+                        if stable == True:
+                            coal.append((True, coal_new_h, new_result))
 
-                            for index, row in coalition.iterrows():
-                                pref = list(row.iloc[0:-2])
-                                ind = pref.index(alt)
-                                pref.pop(ind)
-                                pref.insert(0, alt)
-                                man.append(pref)
+                        else:  # if a coalition is not stable you check if its subcoalitions are (recursive function)
 
-                            coal_new_h, new_result = find_new_happiness(
-                                man, coalition, voting_df, voting
-                            )  # compute the new happiness
+                            ind = 0
+                            while len(subcoals) > 0:
 
-                            coalition = coalition.iloc[:, :-1]
+                                if len(subcoals[ind].index) > 2:
+                                    sb = subcoals[ind].drop(columns="New_H")
 
-                            if analyze_core(coal_new_h, "H", "New_H") == True:
-
-                                print(
-                                    f"Pushing {alt} made everyone in the group {coal_id} happier, here the new winner:  ",
-                                    new_result,
-                                )
-                                print(f"is it stable?")
-                                stable, subcoals = stability_of_coalitions(
-                                    coal_new_h, voting_df, results, voting
-                                )
-                                print(stable)
-
-                                if stable == True:
-
-                                    coal.append((True, coal_new_h, new_result))
-                                else:  # if a coalition is not stable you check if its subcoalitions are (recursive function)
-
-                                    ind = 0
-                                    while len(subcoals) > 0:
-
-                                        if len(subcoals[ind].index) > 2:
-                                            sb = subcoals[ind].drop(columns="New_H")
-
-                                            sb = sb.rename(
-                                                columns={"New_H_subcoal": "New_H"}
+                                    sb = sb.rename(columns={"New_H_subcoal": "New_H"})
+                                    stable2, sb2 = stability_of_coalitions(
+                                        sb, voting_df, results, voting, strategy
+                                    )
+                                    if stable2 == True:
+                                        coal.append(
+                                            (
+                                                True,
+                                                subcoals[ind],
+                                                new_result,
                                             )
-                                            stable2, sb2 = stability_of_coalitions(
-                                                sb, voting_df, results, voting
+                                        )
+                                        subcoals.pop(0)
+
+                                    else:
+
+                                        coal.append(
+                                            (
+                                                False,
+                                                coal_new_h,
+                                                new_result,
+                                                subcoals,
                                             )
-                                            if stable2 == True:
+                                        )
+                                        subcoals.pop(0)
+                                        for ob in sb2:
+                                            subcoals.append(ob)
 
-                                                coal.append(
-                                                    (True, subcoals[ind], new_result)
-                                                )
-                                                subcoals.pop(0)
-
-                                            else:
-                                                coal.append(
-                                                    (
-                                                        False,
-                                                        coal_new_h,
-                                                        new_result,
-                                                        subcoals,
-                                                    )
-                                                )
-                                                subcoals.pop(0)
-                                                for ob in sb2:
-                                                    subcoals.append(ob)
-
-                                        else:
-
-                                            coal.append(
-                                                (True, subcoals[ind], new_result)
-                                            )
-                                            subcoals.pop(0)
+                                else:
+                                    coal.append((True, subcoals[ind], new_result))
+                                    subcoals.pop(0)
 
     return coal
+
+
+def coalition_dataframe(coals, voting_array, valori_original_happiness):
+    df = pd.DataFrame(
+        columns=[
+            "Number_voters",
+            "voters",
+            "number_manipulations",
+            "strategic_voting_risk",
+            "overall_happiness_change_inside_coalition",
+            "overall_happiness_change_system",
+        ]
+    )
+
+    i = 0
+
+    dix = {}
+    diz_coal = {}
+    for el in coals:
+        dataset = el[1]
+
+        indici = tuple(dataset.index)
+        if indici not in list(df["voters"]):
+            diz_coal[get_df_hash(dataset)] = dataset
+            dataset["diff"] = dataset["New_H"] - dataset["H"]
+            df.loc[i, "Number_voters"] = len(indici)
+            df.loc[i, "voters"] = tuple(indici)
+            df.loc[i, "number_manipulations"] = 1
+            df.loc[i, "strategic_voting_risk"] = dataset["diff"].max()
+            df.loc[i, "overall_happiness_change_inside_coalition"] = dataset[
+                "diff"
+            ].sum()
+            dix[tuple(indici)] = i
+
+            new_happiness_level = HappinessLevel(voting_array, el[2].winner)
+            valori_new_happiness = np.array(
+                list(new_happiness_level.happiness_level_dict.values())
+            )
+
+            overall_diff = np.sum(valori_new_happiness - valori_original_happiness)
+            df.loc[i, "overall_happiness_change_system"] = overall_diff
+            i += 1
+        else:
+            if get_df_hash(dataset) not in diz_coal:
+
+                diz_coal[get_df_hash(dataset)] = dataset
+                dataset["diff"] = dataset["New_H"] - dataset["H"]
+                df.loc[dix[tuple(indici)], "number_manipulations"] += 1
+                # if there are more than 1 possible manipulations compute the mean
+                df.loc[dix[tuple(indici)], "strategic_voting_risk"] += dataset[
+                    "diff"
+                ].max()
+                df.loc[dix[tuple(indici)], "strategic_voting_risk"] = (
+                    df.loc[dix[tuple(indici)], "strategic_voting_risk"]
+                    / df.loc[dix[tuple(indici)], "number_manipulations"]
+                )
+                df.loc[
+                    dix[tuple(indici)], "overall_happiness_change_inside_coalition"
+                ] += dataset["diff"].sum()
+                df.loc[
+                    dix[tuple(indici)], "overall_happiness_change_inside_coalition"
+                ] = (
+                    df.loc[
+                        dix[tuple(indici)], "overall_happiness_change_inside_coalition"
+                    ]
+                    / df.loc[dix[tuple(indici)], "number_manipulations"]
+                )
+
+                new_happiness_level = HappinessLevel(voting_array, el[2].winner)
+                valori_new_happiness = np.array(
+                    list(new_happiness_level.happiness_level_dict.values())
+                )
+
+                overall_diff = np.sum(valori_new_happiness - valori_original_happiness)
+                df.loc[
+                    dix[tuple(indici)], "overall_happiness_change_system"
+                ] += overall_diff
+                df.loc[dix[tuple(indici)], "overall_happiness_change_system"] = (
+                    df.loc[dix[tuple(indici)], "overall_happiness_change_system"]
+                    / df.loc[dix[tuple(indici)], "number_manipulations"]
+                )
+
+    return df
