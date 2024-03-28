@@ -4,6 +4,8 @@ from src.outcomes import Result
 import matplotlib.pyplot as plt
 from src.utils import VotingArray
 import math
+from pandas import DataFrame
+from src.utils import VotingSchemas
 
 
 class HappinessLevel:
@@ -11,9 +13,15 @@ class HappinessLevel:
     Happiness level
     """
 
-    def __init__(self, preferences: VotingArray, winner: Union[str, Result]) -> None:
+    def __init__(
+        self,
+        preferences: VotingArray,
+        winner: Union[str, Result],
+        voting_schema: VotingSchemas,
+    ) -> None:
         self.preferences = preferences
-        self.columns = preferences.to_pandas().columns.to_list()
+        self.columns = DataFrame(preferences).columns.to_list()
+        self.voting_schema = voting_schema
         self.voters_winner_rank = np.zeros(self.preferences.shape[1])
         self._all_happiness_level = None
 
@@ -22,8 +30,31 @@ class HappinessLevel:
         else:
             self.winner = winner
 
-    def __repr__(self) -> str:
-        return f"Happiness level: {self.happiness_level}"
+    def run(self, show=False):
+        """
+        Runs the happiness level analysis.
+
+        Args:
+            display (bool, optional): Whether to display the analysis results. Defaults to False.
+
+        Returns:
+            self: The current instance of the HappinessLevel class.
+        """
+        _ = self.voter
+
+        if show:
+            print("Voters Happiness Level")
+            display(self.happiness_level_pandas())  # Only for notebooks
+
+            print(f"\nOverall Happiness Level: {self.total}")
+
+            print("\nHappiness Level Distribution")
+            self.plot()
+
+            print("\nHistogram of Happiness Level")
+            self.histogram()
+
+        return self
 
     @property
     def voter(self) -> np.ndarray:
@@ -62,6 +93,14 @@ class HappinessLevel:
             raise ValueError("Columns not defined")
         return dict(zip(self.columns, self.voter))
 
+    def happiness_level_pandas(self) -> DataFrame:
+        """
+        Returns the happiness level of all voters in a pandas DataFrame
+        """
+        df = DataFrame(self.happiness_level_dict, index=[0]).T
+        df.rename(columns={0: "Happiness Level"}, inplace=True)
+        return df
+
     def happiness_level(self, vwr: int) -> float:
         """
         vwr -- (voter winner rank") preference rank of winner by voter i.
@@ -93,7 +132,7 @@ class HappinessLevel:
         plt.scatter(self.voters_winner_rank, self.voter, c="r")
         plt.xlabel("Voters Winner Rank")
         plt.ylabel("Happiness Level")
-        plt.title("Happiness Level of All Voters")
+        plt.title(f"{self.voting_schema.value} -- Happiness Level of All Voters")
         plt.grid(True)
 
         plt.show()
@@ -104,8 +143,28 @@ class HappinessLevel:
 
         plt.xlabel("Happiness Level")
         plt.ylabel("Frequency")
-        plt.title("Histogram of Happiness Level")
+        plt.title(f"{self.voting_schema.value} -- Histogram of Happiness Level")
         plt.grid(True)
+        plt.show()
+
+    def both(self):
+        x = np.linspace(0, self.preferences.shape[0] - 1, 1000)
+        y = [self.happiness_level(v) for v in x]
+
+        fig, ax = plt.subplots(1, 2, figsize=(20, 2.5))
+        ax.flat[0].plot(x, y)
+        ax.flat[0].scatter(self.voters_winner_rank, self.voter, c="r")
+        ax.flat[0].set_xlabel("Voters Winner Rank")
+        ax.flat[0].set_ylabel("Happiness Level")
+        ax.flat[0].set_title(f"Happiness Level of All Voters")
+        ax.flat[0].grid(True)
+
+        counts, bins = np.histogram(self.voter)
+        ax.flat[1].hist(bins[:-1], bins, weights=counts)
+        ax.flat[1].set_label("Happiness Level")
+        ax.flat[1].set_label("Frequency")
+        ax.flat[1].set_title(f"Histogram of Happiness Level")
+        ax.flat[1].grid(True)
         plt.show()
 
 
