@@ -11,7 +11,7 @@ Run the TVA analysis by running the Docker Image. You need to mount the folder `
 ```bash
 docker run -v $(pwd)/input:/input tva
 ```
-Once the execution ends you should find a PDF file called `tva_report.pdf` with the analysis.
+Once the execution ends you should find a HTML file called `tva_report.html` with the analysis.
 
 ### Modify Voting Input
 In the `input/` folder there is a `JSON` file named `voting_result.json` with a sample voting input.
