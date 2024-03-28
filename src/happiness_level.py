@@ -20,7 +20,7 @@ class HappinessLevel:
         voting_schema: VotingSchemas,
     ) -> None:
         self.preferences = preferences
-        self.columns = preferences.to_pandas().columns.to_list()
+        self.columns = DataFrame(preferences).columns.to_list()
         self.voting_schema = voting_schema
         self.voters_winner_rank = np.zeros(self.preferences.shape[1])
         self._all_happiness_level = None
@@ -145,6 +145,26 @@ class HappinessLevel:
         plt.ylabel("Frequency")
         plt.title(f"{self.voting_schema.value} -- Histogram of Happiness Level")
         plt.grid(True)
+        plt.show()
+
+    def both(self):
+        x = np.linspace(0, self.preferences.shape[0] - 1, 1000)
+        y = [self.happiness_level(v) for v in x]
+
+        fig, ax = plt.subplots(1, 2, figsize=(20, 2.5))
+        ax.flat[0].plot(x, y)
+        ax.flat[0].scatter(self.voters_winner_rank, self.voter, c="r")
+        ax.flat[0].set_xlabel("Voters Winner Rank")
+        ax.flat[0].set_ylabel("Happiness Level")
+        ax.flat[0].set_title(f"Happiness Level of All Voters")
+        ax.flat[0].grid(True)
+
+        counts, bins = np.histogram(self.voter)
+        ax.flat[1].hist(bins[:-1], bins, weights=counts)
+        ax.flat[1].set_label("Happiness Level")
+        ax.flat[1].set_label("Frequency")
+        ax.flat[1].set_title(f"Histogram of Happiness Level")
+        ax.flat[1].grid(True)
         plt.show()
 
 
