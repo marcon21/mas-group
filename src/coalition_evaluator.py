@@ -17,7 +17,7 @@ def evaluate_coalition_strategic_voting_plurality(voting_data: VotingArray) -> l
     # Analyzing possible coalitions
     for r in range(2, num_voters + 1):
         for coalition in combinations(range(num_voters), r):
-            for candidate in set(voting_data[0, :]):  # Potential strategic votes
+            for candidate in set(voting_data[:, 0]):  # Potential strategic votes
                 new_voting_array = voting_data.copy()  # Make a new array for changes
                 actual_coalition = []  # Track actual members who changed their vote
 
@@ -39,7 +39,7 @@ def evaluate_coalition_strategic_voting_plurality(voting_data: VotingArray) -> l
                         if all(change > 0 for change in happiness_diff.values()):  # Check all members are happier
                             evaluated_scenarios.add(scenario_key)  # Mark this scenario as evaluated
                             total_happiness_diff = new_happiness.total - original_happiness.total
-                            successful_coalitions.append((actual_coalition, candidate, original_winner, new_winner, happiness_diff, total_happiness_diff))
+                            successful_coalitions.append((actual_coalition, candidate, original_winner, new_winner, happiness_diff, total_happiness_diff, new_voting_array))
 
     # Return after all coalitions are evaluated to avoid repetitive print statements
     return successful_coalitions
@@ -228,7 +228,7 @@ def remove_redundant_coalitions(successful_coalitions):
 def print_results_coalition_strategic_voting_plurality(successful_coalitions_plurality):
     print("\nSummary of Successful Coalitions under Plurality Voting:")
     # Iterate through each successful coalition
-    for (coalition, strategic_vote, original_winner, new_winner, happiness_diff, overall_happiness_diff) in successful_coalitions_plurality:
+    for (coalition, strategic_vote, original_winner, new_winner, happiness_diff, overall_happiness_diff, new_voting_array) in successful_coalitions_plurality:
         # Formatting coalition for printing
         formatted_coalition = ', '.join([f'Voter_{v}' for v in coalition])
         # Print out the results for the coalition
@@ -239,6 +239,7 @@ def print_results_coalition_strategic_voting_plurality(successful_coalitions_plu
         # Print a newline for better readability between different coalitions
         print(f"Overall Happiness Change: {overall_happiness_diff:.3f}\n")
         print()
+        print(new_voting_array.to_pandas())
 
 
 def print_results_coalition_strategic_voting_for_two(successful_coalitions):
@@ -296,10 +297,43 @@ def print_results_coalition_strategic_voting_borda(successful_coalitions_borda):
         print(f"Overall Happiness Change: {overall_happiness_diff:.3f}\n")
 
 
+# def analyze_coalitions(n_scenarios, n_voters_list, n_candidates_list, voting_scheme_name, evaluate_function):
+#     metrics = {
+#         'average_coalitions': [],
+#         'average_overall_happiness_change': [],
+#     }
+
+#     total_coalitions = []
+#     total_overall_happiness_change = []
+    
+#     for n_voters in n_voters_list:
+#         for n_candidates in n_candidates_list:
+#             scenario_coalitions = 0
+#             scenario_happiness_change = 0
+            
+#             for _ in range(n_scenarios):
+#                 voting_array = random_voting(n_voters, n_candidates)
+#                 successful_coalitions = evaluate_function(voting_array)
+                
+#                 num_coalitions = len(successful_coalitions)
+#                 overall_happiness_change = sum(data[5] for data in successful_coalitions) / len(successful_coalitions) if successful_coalitions else 0
+                
+#                 scenario_coalitions += num_coalitions
+#                 scenario_happiness_change += overall_happiness_change
+            
+#             total_coalitions.append(scenario_coalitions / n_scenarios)
+#             total_overall_happiness_change.append(scenario_happiness_change / n_scenarios)
+    
+#     metrics['average_coalitions'] = total_coalitions
+#     metrics['average_overall_happiness_change'] = total_overall_happiness_change
+
+#     return metrics
+        
 def analyze_coalitions(n_scenarios, n_voters_list, n_candidates_list, voting_scheme_name, evaluate_function):
     metrics = {
         'average_coalitions': [],
         'average_overall_happiness_change': [],
+        'average_member_happiness_change': {}
     }
 
     total_coalitions = []
@@ -309,6 +343,7 @@ def analyze_coalitions(n_scenarios, n_voters_list, n_candidates_list, voting_sch
         for n_candidates in n_candidates_list:
             scenario_coalitions = 0
             scenario_happiness_change = 0
+            member_happiness_changes = {voter: [] for voter in range(n_voters)}  # Initialize a list for each voter
             
             for _ in range(n_scenarios):
                 voting_array = random_voting(n_voters, n_candidates)
@@ -317,16 +352,29 @@ def analyze_coalitions(n_scenarios, n_voters_list, n_candidates_list, voting_sch
                 num_coalitions = len(successful_coalitions)
                 overall_happiness_change = sum(data[5] for data in successful_coalitions) / len(successful_coalitions) if successful_coalitions else 0
                 
+                # Calculate individual happiness changes for each coalition member
+                for coalition in successful_coalitions:
+                    for voter, change in coalition[4].items():  # Assuming index 4 is the happiness_diff dictionary
+                        member_happiness_changes[voter].append(change)
+                
                 scenario_coalitions += num_coalitions
                 scenario_happiness_change += overall_happiness_change
             
             total_coalitions.append(scenario_coalitions / n_scenarios)
             total_overall_happiness_change.append(scenario_happiness_change / n_scenarios)
+            
+            # Calculate the average happiness change for each member across all scenarios
+            for voter in member_happiness_changes:
+                average_change = sum(member_happiness_changes[voter]) / len(member_happiness_changes[voter]) if member_happiness_changes[voter] else 0
+                if voter not in metrics['average_member_happiness_change']:
+                    metrics['average_member_happiness_change'][voter] = []
+                metrics['average_member_happiness_change'][voter].append(average_change)
     
     metrics['average_coalitions'] = total_coalitions
     metrics['average_overall_happiness_change'] = total_overall_happiness_change
 
     return metrics
+
 
 
 
