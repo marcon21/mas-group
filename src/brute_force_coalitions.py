@@ -45,7 +45,6 @@ def evaluate_coalition_strategic_voting_plurality(voting_data: VotingArray) -> l
     return successful_coalitions
 
 
-
 def evaluate_coalition_strategic_voting_for_two(voting_data: VotingArray) -> list:
     num_voters = voting_data.shape[1]
     candidates = list(set(voting_data.flatten()))
@@ -55,7 +54,7 @@ def evaluate_coalition_strategic_voting_for_two(voting_data: VotingArray) -> lis
 
     def is_new_coalition_valid(new_coalition, successful_coalitions):
         new_coalition_set = set(new_coalition)
-        for existing_coalition, _, _, _, _, _ in successful_coalitions:
+        for existing_coalition, _, _, _, _, _, _ in successful_coalitions:
             if set(existing_coalition).issubset(new_coalition_set):
                 # The new coalition contains an entire existing successful coalition
                 return False
@@ -89,7 +88,7 @@ def evaluate_coalition_strategic_voting_for_two(voting_data: VotingArray) -> lis
 
                     if all_happier and is_new_coalition_valid(coalition, successful_coalitions):
                         total_happiness_diff = temp_happiness.total - original_happiness.total
-                        successful_coalitions.append((coalition, strategic_votes, original_winner, new_winner, happiness_changes, total_happiness_diff))
+                        successful_coalitions.append((coalition, strategic_votes, original_winner, new_winner, happiness_changes, total_happiness_diff, new_voting_array))
 
     return successful_coalitions
 
@@ -152,7 +151,7 @@ def evaluate_coalition_strategic_voting_veto(voting_data: VotingArray):
                         coalition_signature = (tuple(sorted(effective_coalition)), new_winner)
                         unique_coalitions.add(coalition_signature)
                         total_happiness_diff = temp_happiness.total - original_happiness.total
-                        successful_coalitions.append((coalition_signature, {v: strategic_changes[v] for v in effective_coalition}, original_winner, new_winner, happiness_changes, total_happiness_diff))
+                        successful_coalitions.append((coalition_signature, {v: strategic_changes[v] for v in effective_coalition}, original_winner, new_winner, happiness_changes, total_happiness_diff, new_voting_array))
 
     return successful_coalitions
 
@@ -204,7 +203,7 @@ def evaluate_coalition_strategic_voting_borda(voting_data: VotingArray):
                         if coalition_signature not in unique_coalitions:
                             unique_coalitions.add(coalition_signature)
                             total_happiness_diff = temp_happiness.total - original_happiness.total
-                            successful_coalitions.append((coalition_signature, {v: strategic_changes[v] for v in effective_coalition}, original_winner, new_winner, happiness_changes, total_happiness_diff))
+                            successful_coalitions.append((coalition_signature, {v: strategic_changes[v] for v in effective_coalition}, original_winner, new_winner, happiness_changes, total_happiness_diff, new_voting_array))
     final_successful_coalitions = remove_redundant_coalitions(successful_coalitions)
     return final_successful_coalitions
 
@@ -221,7 +220,6 @@ def remove_redundant_coalitions(successful_coalitions):
         if not contains_subset:
             refined_coalitions.append(current_coalition)
     return refined_coalitions
-
 
 
 
@@ -246,7 +244,7 @@ def print_results_coalition_strategic_voting_for_two(successful_coalitions):
     print("\nSummary of Successful Coalitions and their Strategic Votes (Voting for Two):")
 
     for coalition_data in successful_coalitions:
-        coalition, strategic_votes, original_winner, new_winner, happiness_changes, overall_happiness_diff = coalition_data
+        coalition, strategic_votes, original_winner, new_winner, happiness_changes, overall_happiness_diff, new_voting_array = coalition_data
 
         # Format the coalition for printing
         formatted_coalition = ', '.join([f'Voter_{v}' for v in coalition])
@@ -263,12 +261,13 @@ def print_results_coalition_strategic_voting_for_two(successful_coalitions):
         print(f"Original Winner: {original_winner}, New Winner: {new_winner}")
         print(f"Changes in Happiness Levels for Coalition Members: {formatted_happiness_changes}\n")
         print(f"Overall Happiness Change: {overall_happiness_diff:.3f}\n")
+        print(new_voting_array.to_pandas())
 
 
 def print_results_coalition_strategic_voting_veto(successful_coalitions_veto):
 
     print("\nSummary of Successful Coalitions and their Strategic Votes for VETO scheme:")
-    for (coalition_signature, strategic_changes_dict, original_winner, new_winner, happiness_changes, overall_happiness_diff) in successful_coalitions_veto:
+    for (coalition_signature, strategic_changes_dict, original_winner, new_winner, happiness_changes, overall_happiness_diff, new_voting_array) in successful_coalitions_veto:
         effective_coalition, new_winner = coalition_signature
         formatted_members = ', '.join([f'Voter_{v}' for v in effective_coalition])
         formatted_changes = ', '.join([f'Voter_{v} = {lp}' for v, lp in strategic_changes_dict.items()])
@@ -279,11 +278,12 @@ def print_results_coalition_strategic_voting_veto(successful_coalitions_veto):
         print(f"Original Winner: {original_winner}, New Winner: {new_winner}")
         print(f"Changes in Happiness Levels for Coalition Members: {formatted_happiness_changes}\n")
         print(f"Overall Happiness Change: {overall_happiness_diff:.3f}\n") 
+        print(new_voting_array.to_pandas())
 
 
 def print_results_coalition_strategic_voting_borda(successful_coalitions_borda):
     print("\nSummary of Successful Coalitions and their Strategic Votes (Borda):")
-    for (coalition_signature, strategic_changes_dict, original_winner, new_winner, happiness_changes, overall_happiness_diff) in successful_coalitions_borda:
+    for (coalition_signature, strategic_changes_dict, original_winner, new_winner, happiness_changes, overall_happiness_diff, new_voting_array) in successful_coalitions_borda:
         effective_coalition, _ = coalition_signature
         formatted_members = ', '.join([f'Voter_{v}' for v in effective_coalition])
         formatted_changes = ', '.join([f'Voter_{v} changes: {changes}' for v, changes in strategic_changes_dict.items()])
@@ -295,39 +295,8 @@ def print_results_coalition_strategic_voting_borda(successful_coalitions_borda):
         print(f"Original Winner: {original_winner}, New Winner: {new_winner}")
         print(f"Changes in Happiness Levels for Coalition Members: {formatted_happiness_changes}\n")
         print(f"Overall Happiness Change: {overall_happiness_diff:.3f}\n")
+        print(new_voting_array.to_pandas())
 
-
-# def analyze_coalitions(n_scenarios, n_voters_list, n_candidates_list, voting_scheme_name, evaluate_function):
-#     metrics = {
-#         'average_coalitions': [],
-#         'average_overall_happiness_change': [],
-#     }
-
-#     total_coalitions = []
-#     total_overall_happiness_change = []
-    
-#     for n_voters in n_voters_list:
-#         for n_candidates in n_candidates_list:
-#             scenario_coalitions = 0
-#             scenario_happiness_change = 0
-            
-#             for _ in range(n_scenarios):
-#                 voting_array = random_voting(n_voters, n_candidates)
-#                 successful_coalitions = evaluate_function(voting_array)
-                
-#                 num_coalitions = len(successful_coalitions)
-#                 overall_happiness_change = sum(data[5] for data in successful_coalitions) / len(successful_coalitions) if successful_coalitions else 0
-                
-#                 scenario_coalitions += num_coalitions
-#                 scenario_happiness_change += overall_happiness_change
-            
-#             total_coalitions.append(scenario_coalitions / n_scenarios)
-#             total_overall_happiness_change.append(scenario_happiness_change / n_scenarios)
-    
-#     metrics['average_coalitions'] = total_coalitions
-#     metrics['average_overall_happiness_change'] = total_overall_happiness_change
-
-#     return metrics
         
 def analyze_coalitions(n_scenarios, n_voters_list, n_candidates_list, voting_scheme_name, evaluate_function):
     metrics = {
@@ -344,8 +313,10 @@ def analyze_coalitions(n_scenarios, n_voters_list, n_candidates_list, voting_sch
             scenario_coalitions = 0
             scenario_happiness_change = 0
             member_happiness_changes = {voter: [] for voter in range(n_voters)}  # Initialize a list for each voter
-            
+            i = 0
             for _ in range(n_scenarios):
+                i += 1
+                print(f"Scenario {i} of {n_scenarios} for {n_voters} voters and {n_candidates} candidates")
                 voting_array = random_voting(n_voters, n_candidates)
                 successful_coalitions = evaluate_function(voting_array)
                 
