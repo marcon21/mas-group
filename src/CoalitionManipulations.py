@@ -327,7 +327,7 @@ def coalition_dataframe(coals, voting_array, valori_original_happiness):
         columns=[
             "Number_voters",
             "voters",
-            # "number_manipulations",
+            "number_manipulations",
             "strategic_voting_risk",
             "overall_happiness_change_inside_coalition",
             "overall_happiness_change_system",
@@ -336,47 +336,44 @@ def coalition_dataframe(coals, voting_array, valori_original_happiness):
 
     i = 0
 
-    # dix = {}
+    dix = {}
     diz_coal = {}
     for el in coals:
         dataset = el[1]
         indici = tuple(dataset.index)
-        # if indici not in list(df["voters"]):
-        diz_coal[get_df_hash(dataset)] = dataset
-        dataset["diff"] = dataset["New_H"] - dataset["H"]
-        df.loc[i, "Number_voters"] = len(indici)
-        df.loc[i, "voters"] = tuple(indici)
-        # df.loc[i, "number_manipulations"] = 1
-        df.loc[i, "strategic_voting_risk"] = dataset["diff"].max()
-        df.loc[i, "overall_happiness_change_inside_coalition"] = (
-            dataset["diff"].sum() / df.loc[i, "Number_voters"]
-        )
-        # dix[tuple(indici)] = i
+        if indici not in list(df["voters"]):
+            diz_coal[get_df_hash(dataset)] = dataset
+            dataset["diff"] = dataset["New_H"] - dataset["H"]
+            df.loc[i, "Number_voters"] = len(indici)
+            df.loc[i, "voters"] = tuple(indici)
+            df.loc[i, "number_manipulations"] = 1
+            df.loc[i, "strategic_voting_risk"] = dataset["diff"].mean()
+            df.loc[i, "overall_happiness_change_inside_coalition"] = (
+                dataset["diff"].sum() / df.loc[i, "Number_voters"]
+            )
+            dix[tuple(indici)] = i
 
-        new_happiness_level = HappinessLevel(voting_array, el[2].winner)
-        valori_new_happiness = np.array(
-            list(new_happiness_level.happiness_level_dict.values())
-        )
+            new_happiness_level = HappinessLevel(voting_array, el[2].winner)
+            valori_new_happiness = np.array(
+                list(new_happiness_level.happiness_level_dict.values())
+            )
 
-        overall_diff = np.sum(valori_new_happiness - valori_original_happiness) / len(
-            valori_new_happiness
-        )
-        df.loc[i, "overall_happiness_change_system"] = overall_diff
-        i += 1
-        """
+            overall_diff = np.sum(
+                valori_new_happiness - valori_original_happiness
+            ) / len(valori_new_happiness)
+            df.loc[i, "overall_happiness_change_system"] = overall_diff
+            i += 1
+
         else:
             if get_df_hash(dataset) not in diz_coal:
 
                 diz_coal[get_df_hash(dataset)] = dataset
                 dataset["diff"] = dataset["New_H"] - dataset["H"]
                 df.loc[dix[tuple(indici)], "number_manipulations"] += 1
-                # if there are more than 1 possible manipulations compute the mean
-                df.loc[dix[tuple(indici)], "strategic_voting_risk"] += dataset[
-                    "diff"
-                ].max()
-                df.loc[dix[tuple(indici)], "strategic_voting_risk"] = (
-                    df.loc[dix[tuple(indici)], "strategic_voting_risk"]
-                    / df.loc[dix[tuple(indici)], "number_manipulations"]
+                # if there are more find the one with the maximum average difference
+                df.loc[dix[tuple(indici)], "strategic_voting_risk"] = max(
+                    df.loc[dix[tuple(indici)], "strategic_voting_risk"],
+                    dataset["diff"].mean(),
                 )
                 df.loc[
                     dix[tuple(indici)], "overall_happiness_change_inside_coalition"
@@ -405,5 +402,5 @@ def coalition_dataframe(coals, voting_array, valori_original_happiness):
                     df.loc[dix[tuple(indici)], "overall_happiness_change_system"]
                     / df.loc[dix[tuple(indici)], "number_manipulations"]
                 )
-            """
+
     return df
