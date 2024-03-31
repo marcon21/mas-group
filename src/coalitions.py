@@ -697,7 +697,6 @@ def find_stable_coalitions_by_compromising(
         cluster_epoch += max_coal + 1
 
         for coal_id, coalition in others.groupby("gruppo"):
-            print(coalition)
 
             if get_df_hash(coalition.iloc[:, :-2]) not in coal_index:
 
